@@ -1,0 +1,19 @@
+pass:
+  build: pass
+  ports:
+    - '2201:22'
+
+key:
+  build: key
+  ports:
+    - '2202:22'
+
+authykey:
+  build: authykey
+  ports:
+    - '2203:22'
+
+authypass:
+  build: authypass
+  ports:
+    - '2204:22'
