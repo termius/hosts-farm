@@ -1,0 +1,6 @@
+PubkeyAuthentication yes
+RSAAuthentication yes
+HostbasedAuthentication no
+PasswordAuthentication no
+AllowGroups remote
+AuthorizedKeysFile .ssh/authorized_keys

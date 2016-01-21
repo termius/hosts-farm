@@ -8,3 +8,4 @@ ADD sshd_config /etc/ssh/sshd_config
 
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT /usr/bin/entrypoint.sh
+CMD /usr/sbin/sshd -D

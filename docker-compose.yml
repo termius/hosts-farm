@@ -1,10 +1,15 @@
 pass:
   build: pass
+  environment:
+    ADMIN: sa
+    ADMIN_PASS: 1
   ports:
     - '2201:22'
 
 key:
   build: key
+  environment:
+    ADMIN: sa
   ports:
     - '2202:22'
 
