@@ -13,10 +13,12 @@ add_credential() {
     chmod 700 /home/$1/.ssh
     chmod 600 /home/$1/.ssh/authorized_keys
     chown -R $1:remote /home/$1/.ssh/
+
+    yes|authy-ssh enable $ADMIN $AUTHY_EMAIL $AUTHY_CONTRY_CODE $AUTHY_PHONE
 }
 
 mkdir /var/run/sshd
-echo -e 'zhDa85XgGi61HTOG1zJSZmn0dBZN8q6w\n2\n' | bash authy-ssh install /usr/local/bin
+echo -e '$AUTHY_API_KEY\n2\n' | bash authy-ssh install /usr/local/bin
 
 create_user $ADMIN
 add_credential $ADMIN

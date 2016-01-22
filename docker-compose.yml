@@ -17,7 +17,10 @@ authykey:
   build: authykey
   environment:
     ADMIN: sa
-    AUTHY_API_KEY: zhDa85XgGi61HTOG1zJSZmn0dBZN8q6w
+    AUTHY_API_KEY: ${AUTHY_API_KEY}
+    AUTHY_PHONE: ${AUTHY_PHONE}
+    AUTHY_EMAIL: ${AUTHY_EMAIL}
+    AUTHY_CONTRY_CODE: ${AUTHY_CONTRY_CODE}
   ports:
     - '2203:22'
 

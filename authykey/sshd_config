@@ -3,3 +3,4 @@ HostbasedAuthentication no
 PasswordAuthentication yes
 AllowGroups remote
 LogLevel DEBUG
+ForceCommand /usr/local/bin/authy-ssh login
