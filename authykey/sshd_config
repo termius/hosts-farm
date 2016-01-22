@@ -1,6 +1,7 @@
-PubkeyAuthentication no
+PubkeyAuthentication yes
+RSAAuthentication yes
 HostbasedAuthentication no
-PasswordAuthentication yes
+PasswordAuthentication no
 AllowGroups remote
 LogLevel DEBUG
 ForceCommand /usr/local/bin/authy-ssh login
