@@ -15,10 +15,16 @@ key:
 
 authykey:
   build: authykey
+  environment:
+    ADMIN: sa
+    AUTHY_API_KEY: zhDa85XgGi61HTOG1zJSZmn0dBZN8q6w
   ports:
     - '2203:22'
 
 authypass:
   build: authypass
+  environment:
+    ADMIN: sa
+    AUTHY_API_KEY: zhDa85XgGi61HTOG1zJSZmn0dBZN8q6w
   ports:
     - '2204:22'
