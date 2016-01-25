@@ -7,6 +7,6 @@ ADD entrypoint.sh /usr/bin/entrypoint.sh
 ADD sshd_config /etc/ssh/sshd_config
 ADD set_password.sh /usr/bin/set_password.sh
 
-RUN chmod +x /usr/bin/entrypoint.sh
+RUN chmod +x /usr/bin/entrypoint.sh /usr/bin/set_password.sh
 ENTRYPOINT /usr/bin/entrypoint.sh
 CMD /usr/sbin/sshd -D
