@@ -16,21 +16,17 @@ key:
 authykey:
   build: authykey
   environment:
-    ADMIN: sa
     AUTHY_API_KEY: ${AUTHY_API_KEY}
-    AUTHY_PHONE: ${AUTHY_PHONE}
-    AUTHY_EMAIL: ${AUTHY_EMAIL}
-    AUTHY_COUNTRY_CODE: ${AUTHY_COUNTRY_CODE}
+    ADMIN_LIST: ${ADMIN_LIST}
+    # template for it is "unixUserName:email:countrycode:phoneNumber unixUserName:email:countrycode:phoneNumber"
   ports:
     - '2203:22'
 
 authypass:
   build: authypass
   environment:
-    ADMIN: sa
     AUTHY_API_KEY: ${AUTHY_API_KEY}
-    AUTHY_PHONE: ${AUTHY_PHONE}
-    AUTHY_EMAIL: ${AUTHY_EMAIL}
-    AUTHY_COUNTRY_CODE: ${AUTHY_COUNTRY_CODE}
+    ADMIN_LIST: ${ADMIN_LIST}
+    # template for it is "unixUserName:email:countrycode:phoneNumber unixUserName:email:countrycode:phoneNumber"
   ports:
     - '2204:22'
