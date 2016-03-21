@@ -30,3 +30,11 @@ authypass:
     # template for it is "unixUserName:email:countrycode:phoneNumber unixUserName:email:countrycode:phoneNumber"
   ports:
     - '2204:22'
+
+otp:
+  build: otp
+  environment:
+    ADMIN: sa
+    ADMIN_PASS: 1
+  ports:
+    - '2205:22'
