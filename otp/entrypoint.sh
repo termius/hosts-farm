@@ -6,7 +6,9 @@ create_user() {
 }
 
 add_credential() {
-    passwd $1
+    mv /tmp/otpw /home/$1/.otpw
+    chown $1: /home/$1/.otpw
+    chmod 600 /home/$1/.otpw
 }
 
 mkdir /var/run/sshd
