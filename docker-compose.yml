@@ -38,3 +38,73 @@ otp:
     ADMIN_PASS: 1
   ports:
     - '2205:22'
+
+ed25519:
+  build: ed25519
+  environment:
+    ADMIN: sa
+  ports:
+    - '2206:22'
+
+ecdsa:
+  build: ecdsa
+  environment:
+    ADMIN: sa
+  ports:
+    - '2207:22'
+
+hmac-sha2-256:
+  build: hmac-sha2-256
+  environment:
+    ADMIN: sa
+  ports:
+    - '2208:22'
+
+hmac-sha2-512:
+  build: hmac-sha2-512
+  environment:
+    ADMIN: sa
+  ports:
+    - '2209:22'
+
+chacha20-poly1305_at_openssh.com:
+  build: chacha20-poly1305_at_openssh.com
+  environment:
+    ADMIN: sa
+  ports:
+    - '2210:22'
+
+aes128-ctr:
+  build: aes128-ctr
+  environment:
+    ADMIN: sa
+  ports:
+    - '2211:22'
+
+aes192-ctr:
+  build: aes192-ctr
+  environment:
+    ADMIN: sa
+  ports:
+    - '2212:22'
+
+aes256-ctr:
+  build: aes256-ctr
+  environment:
+    ADMIN: sa
+  ports:
+    - '2213:22'
+
+curve25519-sha256: 
+  build: curve25519-sha256
+  environment:
+    ADMIN: sa
+  ports:
+    - '2214:22'
+
+diffie-hellman-group-exchange-sha256:
+  build: diffie-hellman-group-exchange-sha256
+  environment:
+    ADMIN: sa
+  ports:
+    - '2215:22'
