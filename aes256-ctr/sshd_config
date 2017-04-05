@@ -1,8 +1,0 @@
-PubkeyAuthentication yes
-RSAAuthentication yes
-HostbasedAuthentication no
-PasswordAuthentication no
-AllowGroups remote
-AuthorizedKeysFile .ssh/authorized_keys
-LogLevel DEBUG
-Ciphers        aes256-ctr

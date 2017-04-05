@@ -5,5 +5,4 @@ PasswordAuthentication no
 AllowGroups remote
 AuthorizedKeysFile .ssh/authorized_keys
 LogLevel DEBUG
-MACs hmac-sha2-256
-
+Ciphers $CIPHER
