@@ -1,5 +1,6 @@
 FROM ubuntu:14.04
 
+RUN apt-get update -y && apt-get upgrade -y && apt-get install -y curl
 RUN apt-get install -y curl openssh-server && \
     curl -O 'https://raw.githubusercontent.com/authy/authy-ssh/master/authy-ssh'
 
