@@ -1,4 +1,4 @@
-# Serverauditor ssh server farm
+# Termius hosts farm
 
 Repository with Docker containers with ssh servers.
 
@@ -11,7 +11,7 @@ Repository with Docker containers with ssh servers.
 
 ## Run
 
-To run ssh servers you'll demand on [Docker](https://www.docker.com)
+To run ssh/telnet servers you'll demand on [Docker](https://www.docker.com)
 and [docker-compose](https://pypi.python.org/pypi/docker-compose).
 
 ```bash
@@ -20,7 +20,7 @@ docker-compose up
 
 ## How to add more options
 
-When you want to add new ssh server configuration follow step below:
+When you want to add new server configuration follow step below:
 
 - create new configuration directory with **meaningful** Name in repository root;
 - add `Dockerfile` and to new configuration directory;
