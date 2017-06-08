@@ -6,7 +6,7 @@ create_user() {
 }
 
 add_credential() {
-    passwd $1
+    echo "$ADMIN:$ADMIN_PASS" | chpasswd
 }
 
 mkdir /var/run/sshd

@@ -5,7 +5,7 @@ services:
     build: pass
     environment:
       ADMIN: sa
-      ADMIN_PASS: 1
+      ADMIN_PASS: pass
     ports:
       - '2201:22'
 
