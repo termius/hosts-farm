@@ -1,140 +1,151 @@
-pass:
-  build: pass
-  environment:
-    ADMIN: sa
-    ADMIN_PASS: 1
-  ports:
-    - '2201:22'
+version: '2'
 
-key:
-  build: .
-  environment:
-    ADMIN: sa
-    CONFIG: sshd_config
-    PUB_KEY_NAME: id_rsa.pub
-  ports:
-    - '2202:22'
+services:
+  pass:
+    build: pass
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: 1
+    ports:
+      - '2201:22'
 
-authykey:
-  build: authykey
-  environment:
-    AUTHY_API_KEY: ${AUTHY_API_KEY}
-    ADMIN_LIST: ${ADMIN_LIST}
-    # template for it is "unixUserName:email:countrycode:phoneNumber unixUserName:email:countrycode:phoneNumber"
-  ports:
-    - '2203:22'
+  key:
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_rsa.pub
+    ports:
+      - '2202:22'
 
-authypass:
-  build: authypass
-  environment:
-    AUTHY_API_KEY: ${AUTHY_API_KEY}
-    ADMIN_LIST: ${ADMIN_LIST}
-    # template for it is "unixUserName:email:countrycode:phoneNumber unixUserName:email:countrycode:phoneNumber"
-  ports:
-    - '2204:22'
+  authykey:
+    build: authykey
+    environment:
+      AUTHY_API_KEY: ${AUTHY_API_KEY}
+      ADMIN_LIST: ${ADMIN_LIST}
+      # template for it is "unixUserName:email:countrycode:phoneNumber unixUserName:email:countrycode:phoneNumber"
+    ports:
+      - '2203:22'
 
-otp:
-  build: otp
-  environment:
-    ADMIN: sa
-    ADMIN_PASS: 1
-  ports:
-    - '2205:22'
+  authypass:
+    build: authypass
+    environment:
+      AUTHY_API_KEY: ${AUTHY_API_KEY}
+      ADMIN_LIST: ${ADMIN_LIST}
+      # template for it is "unixUserName:email:countrycode:phoneNumber unixUserName:email:countrycode:phoneNumber"
+    ports:
+      - '2204:22'
 
-ed25519:
-  build: .
-  environment:
-    ADMIN: sa
-    CONFIG: sshd_config
-    PUB_KEY_NAME: id_ed25519.pub
-  ports:
-    - '2206:22'
+  otp:
+    build: otp
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: 1
+    ports:
+      - '2205:22'
 
-ecdsa:
-  build: .
-  environment:
-    ADMIN: sa
-    CONFIG: sshd_config
-    PUB_KEY_NAME: id_ecdsa.pub
-  ports:
-    - '2207:22'
+  ed25519:
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_ed25519.pub
+    ports:
+      - '2206:22'
 
-hmac-sha2-256:
-  build: .
-  environment:
-    ADMIN: sa
-    MAC: hmac-sha2-256
-    CONFIG: sshd_config_macs
-    PUB_KEY_NAME: id_rsa.pub
-  ports:
-    - '2208:22'
+  ecdsa:
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_ecdsa.pub
+    ports:
+      - '2207:22'
 
-hmac-sha2-512:
-  build: .
-  environment:
-    ADMIN: sa
-    MAC: hmac-sha2-512
-    CONFIG: sshd_config_macs
-    PUB_KEY_NAME: id_rsa.pub
-  ports:
-    - '2209:22'
+  hmac-sha2-256:
+    build: .
+    environment:
+      ADMIN: sa
+      MAC: hmac-sha2-256
+      CONFIG: sshd_config_macs
+      PUB_KEY_NAME: id_rsa.pub
+    ports:
+      - '2208:22'
 
-chacha20-poly1305_at_openssh.com:
-  build: .
-  environment:
-    ADMIN: sa
-    CIPHER: chacha20-poly1305@openssh.com
-    CONFIG: sshd_config_ciphers
-    PUB_KEY_NAME: id_rsa.pub
-  ports:
-    - '2210:22'
+  hmac-sha2-512:
+    build: .
+    environment:
+      ADMIN: sa
+      MAC: hmac-sha2-512
+      CONFIG: sshd_config_macs
+      PUB_KEY_NAME: id_rsa.pub
+    ports:
+      - '2209:22'
 
-aes128-ctr:
-  build: .
-  environment:
-    ADMIN: sa
-    CIPHER: aes128-ctr
-    CONFIG: sshd_config_ciphers
-    PUB_KEY_NAME: id_rsa.pub
-  ports:
-    - '2211:22'
+  chacha20-poly1305_at_openssh.com:
+    build: .
+    environment:
+      ADMIN: sa
+      CIPHER: chacha20-poly1305@openssh.com
+      CONFIG: sshd_config_ciphers
+      PUB_KEY_NAME: id_rsa.pub
+    ports:
+      - '2210:22'
 
-aes192-ctr:
-  build: .
-  environment:
-    ADMIN: sa
-    CIPHER: aes192-ctr
-    CONFIG: sshd_config_ciphers
-    PUB_KEY_NAME: id_rsa.pub
-  ports:
-    - '2212:22'
+  aes128-ctr:
+    build: .
+    environment:
+      ADMIN: sa
+      CIPHER: aes128-ctr
+      CONFIG: sshd_config_ciphers
+      PUB_KEY_NAME: id_rsa.pub
+    ports:
+      - '2211:22'
 
-aes256-ctr:
-  build: .
-  environment:
-    ADMIN: sa
-    CIPHER: aes256-ctr
-    CONFIG: sshd_config_ciphers
-    PUB_KEY_NAME: id_rsa.pub
-  ports:
-    - '2213:22'
+  aes192-ctr:
+    build: .
+    environment:
+      ADMIN: sa
+      CIPHER: aes192-ctr
+      CONFIG: sshd_config_ciphers
+      PUB_KEY_NAME: id_rsa.pub
+    ports:
+      - '2212:22'
 
-curve25519-sha256: 
-  build: .
-  environment:
-    ADMIN: sa
-    KEX: curve25519-sha256@libssh.org
-    CONFIG: sshd_config_kex
-    PUB_KEY_NAME: id_rsa.pub
-  ports:
-    - '2214:22'
+  aes256-ctr:
+    build: .
+    environment:
+      ADMIN: sa
+      CIPHER: aes256-ctr
+      CONFIG: sshd_config_ciphers
+      PUB_KEY_NAME: id_rsa.pub
+    ports:
+      - '2213:22'
 
-diffie-hellman-group-exchange-sha256:
-  build: .
-  environment:
-    ADMIN: sa
-    KEX: diffie-hellman-group-exchange-sha256
-    CONFIG: sshd_config_kex
-    PUB_KEY_NAME: id_rsa.pub
-  ports:
-    - '2215:22'
+  curve25519-sha256:
+    build: .
+    environment:
+      ADMIN: sa
+      KEX: curve25519-sha256@libssh.org
+      CONFIG: sshd_config_kex
+      PUB_KEY_NAME: id_rsa.pub
+    ports:
+      - '2214:22'
+
+  diffie-hellman-group-exchange-sha256:
+    build: .
+    environment:
+      ADMIN: sa
+      KEX: diffie-hellman-group-exchange-sha256
+      CONFIG: sshd_config_kex
+      PUB_KEY_NAME: id_rsa.pub
+    ports:
+      - '2215:22'
+
+  telnet:
+    build: telnet
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+    ports:
+      - '2216:23'
