@@ -2,7 +2,9 @@ version: '2'
 
 services:
   pass:
-    build: pass
+    build:
+      context: .
+      dockerfile: pass/Dockerfile
     environment:
       ADMIN: sa
       ADMIN_PASS: pass
@@ -149,3 +151,33 @@ services:
       ADMIN_PASS: pass
     ports:
       - '2216:23'
+
+  chain1:
+    build:
+      context: .
+      dockerfile: pass/Dockerfile
+    environment:
+      ADMIN: chain1
+      ADMIN_PASS: 1
+      PRIVATE_KEY_NAME: id_rsa
+    ports:
+      - '2217:22'
+    links:
+      - chain2
+
+  chain2:
+    build: .
+    environment:
+      ADMIN: chain2
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_rsa.pub
+      PRIVATE_KEY_NAME: id_rsa1
+    links:
+      - chain3
+
+  chain3:
+    build: .
+    environment:
+      ADMIN: chain3
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_rsa1.pub

@@ -12,6 +12,16 @@ add_credential() {
     chmod 700 /home/$1/.ssh
     chmod 600 /home/$1/.ssh/authorized_keys
     chown -R $1:remote /home/$1/.ssh/
+
+    if [ -n "${PRIVATE_KEY_NAME}" ]; then
+        PUB_KEY="$PRIVATE_KEY_NAME.pub"
+
+        cp /tmp/$PRIVATE_KEY_NAME /home/$1/.ssh/id_rsa
+        cp /tmp/$PUB_KEY /home/$1/.ssh/id_rsa.pub
+
+        chmod 400 /home/$1/.ssh/id_rsa
+        chown -R $1:remote /home/$1/.ssh/
+    fi
 }
 
 envsubst < /tmp/$CONFIG > "/etc/ssh/sshd_config"
