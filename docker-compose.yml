@@ -55,12 +55,12 @@ services:
     ports:
       - '2206:22'
 
-  ecdsa:
+  ecdsa-nistp256:
     build: .
     environment:
       ADMIN: sa
       CONFIG: sshd_config
-      PUB_KEY_NAME: id_ecdsa.pub
+      PUB_KEY_NAME: id_ecdsa_nistp256.pub
     ports:
       - '2207:22'
 
@@ -181,3 +181,21 @@ services:
       ADMIN: chain3
       CONFIG: sshd_config
       PUB_KEY_NAME: id_rsa1.pub
+
+  ecdsa-nistp384:
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_ecdsa_nistp384.pub
+    ports:
+      - '2218:22'
+
+  ecdsa-nistp521:
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_ecdsa_nistp521.pub
+    ports:
+      - '2219:22'
