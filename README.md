@@ -7,7 +7,9 @@ Repository with Docker containers with ssh servers.
 - only identity file;
 - only password;
 - [authy](https://www.authy.com) and identity file;
-- [authy](https://www.authy.com) and password.
+- [authy](https://www.authy.com) and password;
+- one time password;
+- YubiKey with methods: public key (GPG), keyboard-interactive (PAM);
 
 ## Run
 
