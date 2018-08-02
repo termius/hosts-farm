@@ -206,3 +206,9 @@ services:
       ADMIN: sa
     ports:
       - '2220:22'
+  yuubikey-pam:
+    build: yubikey-pam
+    environment:
+      ADMIN: sa
+    ports:
+      - '2221:22'
