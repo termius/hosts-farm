@@ -1,0 +1,6 @@
+PubkeyAuthentication no
+HostbasedAuthentication no
+PermitEmptyPasswords no
+ChallengeResponseAuthentication yes
+PasswordAuthentication no
+UsePAM yes

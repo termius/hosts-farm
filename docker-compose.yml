@@ -199,3 +199,16 @@ services:
       PUB_KEY_NAME: id_ecdsa_nistp521.pub
     ports:
       - '2219:22'
+
+  yuubikey:
+    build: yubikey
+    environment:
+      ADMIN: sa
+    ports:
+      - '2220:22'
+  yuubikey-pam:
+    build: yubikey-pam
+    environment:
+      ADMIN: sa
+    ports:
+      - '2221:22'
