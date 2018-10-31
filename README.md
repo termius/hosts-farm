@@ -28,3 +28,31 @@ When you want to add new server configuration follow step below:
 - add `Dockerfile` and to new configuration directory;
 - add new service with the same configuration name to `docker-compose.yml`;
 - use environment variable in `docker-compose.yml` where it's needed.
+
+## Table of available hosts
+
+| Service | Port | User | Password | Key |
+| :---: | :---: | :---: | :---: | :---: |
+| pass | 2201 | sa | pass | - |
+| key | 2202 | sa | - | [rsa key](/keys/id_rsa) |
+| authykey | 2203 | sa | - | [rsa key](/keys/id_rsa) |
+| authypass | 2204 | Authy users | authy_token | - |
+| otp | 2205 | sa | - | [keys](/otp/keys.txt) |
+| ed25519 | 2206 | sa | - | [ed25519 key](/keys/id_ed25519) |
+| ecdsa-nistp256 | 2207 | sa | - | [ecDSA 256 key](/keys/id_ecdsa_nistp256) |
+| ecdsa-nistp384 | 2218 | sa | - | [ecDSA 384 key](/keys/id_ecdsa_nistp384) |
+| ecdsa-nistp521 | 2219 | sa | - | [ecDSA 521 key](/keys/id_ecdsa_nistp521) |
+| hmac-sha2-256 | 2208 | sa | - | [rsa key](/keys/id_rsa) |
+| hmac-sha2-512 | 2209 | sa | - | [rsa key](/keys/id_rsa) |
+| chacha20-poly1305_at_openssh.com | 2210 | sa | - | [rsa key](/keys/id_rsa) |
+| aes128-ctr | 2211 | sa | - | [rsa key](/keys/id_rsa) |
+| aes192-ctr | 2212 | sa | - | [rsa key](/keys/id_rsa) |
+| aes256-ctr | 2213 | sa | - | [rsa key](/keys/id_rsa) |
+| curve25519-sha256 | 2214 | sa | - | [rsa key](/keys/id_rsa) |
+| diffie-hellman-group-exchange-sha256 | 2215 | sa | - | [rsa key](/keys/id_rsa) |
+| telnet | 2216 | sa | pass | - |
+| chain1 | 2217 | chain1 | 1 | - |
+| chain2 | - | chain2 | - | [rsa key](/keys/id_rsa) |
+| chain3 | - | chain3 | - | [rsa1 key](/keys/id_rsa1) |
+| yuubikey | 2220 | sa | - | - |
+| yuubikey-pam | 2221 | sa | - | - |
