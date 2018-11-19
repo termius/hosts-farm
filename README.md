@@ -56,3 +56,12 @@ When you want to add new server configuration follow step below:
 | chain3 | - | chain3 | - | [rsa1 key](/keys/id_rsa1) |
 | yuubikey | 2220 | sa | - | - |
 | yuubikey-pam | 2221 | sa | - | - |
+
+### Table of proxy hosts
+
+| Hostname          |  Port | Availability | Proxied hosts |
+| :---:             | :---: | :---:        | :---:         |
+| http-proxy        |  8888 | global       | pass, key     |
+| http-proxy-chain1 |  8889 | global       | chain1        |
+| http-proxy-chain2 |  3128 | from chain1  | chain2        |
+| http-proxy-chain3 |  3128 | from chain2  | chain3        |
