@@ -56,6 +56,14 @@ When you want to add new server configuration follow step below:
 | chain3 | - | chain3 | - | [rsa1 key](/keys/id_rsa1) |
 | yuubikey | 2220 | sa | - | - |
 | yuubikey-pam | 2221 | sa | - | - |
+| debug3-logs | 2222 | sa | - | [rsa key](/keys/id_rsa) |
+| agent-forwarding-disabled | 2223 | sa | - | [rsa key](/keys/id_rsa) |
+| gateway-ports | 2224 | sa | - | [rsa key](/keys/id_rsa) |
+| mosh | 2225 | sa | - | [rsa key](/keys/id_rsa) |
+| multiple-auths | 2226 | sa | pass | [rsa key](/keys/id_rsa) |
+| keyboard-interactive-pass | 2227 | sa | pass | - |
+| sftp-disabled | 2228 | sa | - | [rsa key](/keys/id_rsa) |
+| pf-disabled | 2229 | sa | - | [rsa key](/keys/id_rsa) |
 
 ### Table of proxy hosts
 

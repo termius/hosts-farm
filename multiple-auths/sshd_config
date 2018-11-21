@@ -1,0 +1,8 @@
+PubkeyAuthentication yes
+RSAAuthentication yes
+PasswordAuthentication yes
+HostbasedAuthentication no
+AllowGroups remote
+AuthorizedKeysFile .ssh/authorized_keys
+LogLevel DEBUG
+AuthenticationMethods publickey,password

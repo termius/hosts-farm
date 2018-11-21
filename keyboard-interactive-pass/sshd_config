@@ -1,0 +1,6 @@
+PubkeyAuthentication no
+HostbasedAuthentication no
+PasswordAuthentication no
+AllowGroups remote
+LogLevel DEBUG
+UsePAM yes
