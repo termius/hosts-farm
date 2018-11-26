@@ -4,5 +4,6 @@ PasswordAuthentication yes
 HostbasedAuthentication no
 AllowGroups remote
 AuthorizedKeysFile .ssh/authorized_keys
-LogLevel DEBUG
+LogLevel DEBUG3
+SyslogFacility AUTH
 AuthenticationMethods publickey,password

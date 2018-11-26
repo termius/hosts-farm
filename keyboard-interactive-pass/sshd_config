@@ -2,5 +2,6 @@ PubkeyAuthentication no
 HostbasedAuthentication no
 PasswordAuthentication no
 AllowGroups remote
-LogLevel DEBUG
+LogLevel DEBUG3
+SyslogFacility AUTH
 UsePAM yes

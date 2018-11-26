@@ -21,5 +21,9 @@ do
     add_credential ${ADMIN_ITEM[*]}
 done
 
-echo 'Start deamon'
+touch /var/log/auth.log
+chmod 666 /var/log/auth.log
+rsyslogd
+
+echo 'Start daemon'
 /usr/sbin/sshd -D

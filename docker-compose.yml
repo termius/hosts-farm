@@ -240,16 +240,6 @@ services:
     ports:
       - '2221:22'
 
-  debug3-logs:
-    build:
-      context: .
-      dockerfile: debug3-logs/Dockerfile
-    environment:
-      ADMIN: sa
-      PUB_KEY_NAME: id_rsa.pub
-    ports:
-      - '2222:22'
-
   agent-forwarding-disabled:
     build:
       context: .
@@ -258,7 +248,7 @@ services:
       ADMIN: sa
       PUB_KEY_NAME: id_rsa.pub
     ports:
-      - '2223:22'
+      - '2222:22'
 
   gateway-ports:
     build:
@@ -269,7 +259,7 @@ services:
       CONFIG: sshd_config
       PUB_KEY_NAME: id_rsa.pub
     ports:
-      - '2224:22'
+      - '2223:22'
 
   mosh:
     build: 
@@ -280,7 +270,7 @@ services:
       CONFIG: sshd_config
       PUB_KEY_NAME: id_rsa.pub
     ports:
-      - '2225:22'
+      - '2224:22'
       - '60001:60001/udp'
 
   multiple-auths:
@@ -292,7 +282,7 @@ services:
       ADMIN_PASS: pass
       PUB_KEY_NAME: id_rsa.pub
     ports:
-      - '2226:22'
+      - '2225:22'
 
   keyboard-interactive-pass:
     build:
@@ -302,7 +292,7 @@ services:
       ADMIN: sa
       ADMIN_PASS: pass
     ports:
-      - '2227:22'
+      - '2226:22'
 
   sftp-disabled:
     build: .
@@ -311,7 +301,7 @@ services:
       CONFIG: sshd_config_no_sftp
       PUB_KEY_NAME: id_rsa.pub
     ports:
-      - '2228:22'
+      - '2227:22'
   
   pf-disabled:
     build: .
@@ -320,4 +310,4 @@ services:
       CONFIG: sshd_config_no_pf
       PUB_KEY_NAME: id_rsa.pub
     ports:
-      - '2229:22'
+      - '2228:22'

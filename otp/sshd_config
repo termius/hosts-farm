@@ -3,4 +3,6 @@ HostbasedAuthentication no
 PermitEmptyPasswords no
 ChallengeResponseAuthentication yes
 PasswordAuthentication no
+LogLevel DEBUG3
+SyslogFacility AUTH
 UsePAM yes

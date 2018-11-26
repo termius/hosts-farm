@@ -4,5 +4,6 @@ HostbasedAuthentication no
 PasswordAuthentication no
 AllowGroups remote
 AuthorizedKeysFile .ssh/authorized_keys
-LogLevel DEBUG
+LogLevel DEBUG3
+SyslogFacility AUTH
 GatewayPorts clientspecified
