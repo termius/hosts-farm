@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 RUN apt-get update -y && apt-get upgrade -y && \
-    apt-get install -y openssh-server
+    apt-get install -y openssh-server rsyslog
 ADD pass/entrypoint.sh /usr/bin/entrypoint.sh
 ADD pass/sshd_config /etc/ssh/sshd_config
 ADD keys /tmp/
