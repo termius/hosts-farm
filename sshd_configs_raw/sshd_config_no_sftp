@@ -6,4 +6,4 @@ AllowGroups remote
 AuthorizedKeysFile .ssh/authorized_keys
 LogLevel DEBUG3
 SyslogFacility AUTH
-KexAlgorithms $KEX
+Subsystem sftp /bin/false

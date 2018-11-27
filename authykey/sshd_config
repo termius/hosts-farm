@@ -3,5 +3,6 @@ RSAAuthentication yes
 HostbasedAuthentication no
 PasswordAuthentication no
 AllowGroups remote
-LogLevel DEBUG
+LogLevel DEBUG3
+SyslogFacility AUTH
 ForceCommand /usr/local/bin/authy-ssh login

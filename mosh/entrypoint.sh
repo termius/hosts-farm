@@ -1,29 +1,30 @@
 #!/bin/bash
 
 create_user() {
+    groupadd remote
     useradd -d /home/$1 -G remote -m $1
 }
 
 add_credential() {
     passwd -d $1
     mkdir -p /home/$1/.ssh/
-    cat /tmp/id_rsa.pub > /home/$1/.ssh/authorized_keys
+    cat /tmp/$PUB_KEY_NAME > /home/$1/.ssh/authorized_keys
     chmod 700 /home/$1/.ssh
     chmod 600 /home/$1/.ssh/authorized_keys
     chown -R $1:remote /home/$1/.ssh/
-    echo y | authy-ssh enable $1 $2 $3 $4
+
+    if [ -n "${PRIVATE_KEY_NAME}" ]; then
+        PUB_KEY="$PRIVATE_KEY_NAME.pub"
+
+        cp /tmp/$PRIVATE_KEY_NAME /home/$1/.ssh/id_rsa
+        cp /tmp/$PUB_KEY /home/$1/.ssh/id_rsa.pub
+
+        chmod 400 /home/$1/.ssh/id_rsa
+        chown -R $1:remote /home/$1/.ssh/
+    fi
 }
 
 mkdir /var/run/sshd
-groupadd remote
-echo -e "$AUTHY_API_KEY\n2\n" | bash authy-ssh install /usr/local/bin
-
-for admin in $ADMIN_LIST
-do
-    ADMIN_ITEM=($(echo $admin | tr ":" " "))
-    create_user ${ADMIN_ITEM[0]}
-    add_credential ${ADMIN_ITEM[*]}
-done
 
 create_user $ADMIN
 add_credential $ADMIN
@@ -32,5 +33,5 @@ touch /var/log/auth.log
 chmod 666 /var/log/auth.log
 rsyslogd
 
-echo 'Start daemon'
+echo 'Start sshd'
 /usr/sbin/sshd -D

@@ -1,9 +1,9 @@
 PubkeyAuthentication yes
 RSAAuthentication yes
+PasswordAuthentication yes
 HostbasedAuthentication no
-PasswordAuthentication no
 AllowGroups remote
 AuthorizedKeysFile .ssh/authorized_keys
 LogLevel DEBUG3
 SyslogFacility AUTH
-KexAlgorithms $KEX
+AuthenticationMethods publickey,password

@@ -24,8 +24,6 @@ add_credential() {
     fi
 }
 
-envsubst < /tmp/$CONFIG > "/etc/ssh/sshd_config"
-
 mkdir /var/run/sshd
 
 create_user $ADMIN
@@ -34,6 +32,9 @@ add_credential $ADMIN
 touch /var/log/auth.log
 chmod 666 /var/log/auth.log
 rsyslogd
+
+echo 'Start dummy HTTP server'
+python /opt/http/http.py &
 
 echo 'Start daemon'
 /usr/sbin/sshd -D

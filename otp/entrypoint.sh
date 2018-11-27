@@ -16,5 +16,9 @@ mkdir /var/run/sshd
 create_user $ADMIN
 add_credential $ADMIN $ADMIN_PASS
 
-echo 'Start deamon'
+touch /var/log/auth.log
+chmod 666 /var/log/auth.log
+rsyslogd
+
+echo 'Start daemon'
 /usr/sbin/sshd -D
