@@ -1,6 +1,6 @@
 FROM ubuntu:14.04
 
-RUN apt-get update -y && apt-get upgrade -y && apt-get install -y curl
+RUN apt-get update -y && apt-get upgrade -y && apt-get install -y curl rsyslog
 RUN \
     apt-get update && \
     apt-get install -y openssh-server && \

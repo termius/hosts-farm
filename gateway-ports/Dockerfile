@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 RUN apt-get update -y && apt-get upgrade -y && \
-    apt-get install -y openssh-server python
+    apt-get install -y openssh-server python rsyslog
 ADD gateway-ports/http.py /opt/http/http.py
 ADD gateway-ports/entrypoint.sh /usr/bin/entrypoint.sh
 ADD gateway-ports/sshd_config /etc/ssh/sshd_config

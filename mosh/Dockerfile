@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 RUN apt-get update -y && apt-get upgrade -y && \
-    apt-get install -y openssh-server mosh
+    apt-get install -y openssh-server rsyslog mosh
 
 RUN locale-gen en_US.UTF-8
 
