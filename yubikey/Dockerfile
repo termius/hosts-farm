@@ -1,7 +1,7 @@
-FROM ubuntu:14.04
+FROM ubuntu:18.04
 
 RUN apt-get update -y && apt-get upgrade -y && \
-    apt-get install -y openssh-server rsyslog
+    apt-get install -y openssh-server
 
 RUN \
     apt-get install -y gnupg2 pcscd scdaemon curl \

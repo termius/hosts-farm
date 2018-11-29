@@ -31,7 +31,6 @@ add_credential $ADMIN
 
 touch /var/log/auth.log
 chmod 666 /var/log/auth.log
-rsyslogd
 
 echo 'Start sshd'
 /usr/sbin/sshd -D

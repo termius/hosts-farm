@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:18.04
 
 RUN apt-get update && apt-get install -y squid
 COPY squid.conf /etc/squid3/squid.conf

@@ -28,7 +28,6 @@ add_credential $ADMIN $ADMIN_PASS
 
 touch /var/log/auth.log
 chmod 666 /var/log/auth.log
-rsyslogd
 
 echo 'Start daemon'
 /usr/sbin/sshd -D
