@@ -21,12 +21,11 @@ create_user "$ADMIN"
 add_credential "$ADMIN"
 
 pkill ssh-agent ; pkill gpg-agent ; \
-  eval "$(gpg-agent --daemon --enable-ssh-support --use-standard-socket \
-  --log-file ~/.gnupg/gpg-agent.log --write-env-file)"
+  eval "$(gpg-agent --daemon --enable-ssh-support \
+  --log-file ~/.gnupg/gpg-agent.log)"
 echo 'Start daemon'
 
 touch /var/log/auth.log
 chmod 666 /var/log/auth.log
-rsyslogd
 
 /usr/sbin/sshd -D
