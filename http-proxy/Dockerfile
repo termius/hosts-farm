@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
 RUN apt-get update && apt-get install -y squid
-COPY squid.conf /etc/squid3/squid.conf
+COPY squid.conf /etc/squid/squid.conf
 EXPOSE 3128
-CMD ["squid3", "-N"]
+CMD ["squid", "-N"]
