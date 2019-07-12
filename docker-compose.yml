@@ -311,3 +311,18 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     ports:
       - '2228:22'
+  portknocking:
+    build:
+      context: .
+      dockerfile: portknocking/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+    ports:
+      - '2230:22'
+      - '7000:7000'
+      - '8000:8000'
+      - '9000:9000'
+    cap_add:
+      - ALL
+    privileged: true

@@ -35,4 +35,5 @@ touch /var/log/auth.log
 chmod 666 /var/log/auth.log
 
 echo 'Start daemon'
-/usr/sbin/sshd -D
+# /usr/sbin/sshd -D
+exec "$@"

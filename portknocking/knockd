@@ -1,0 +1,2 @@
+START_KNOCKD=1
+KNOCKD_OPTS="--verbose"
