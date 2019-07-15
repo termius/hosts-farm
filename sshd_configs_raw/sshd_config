@@ -4,4 +4,5 @@ PasswordAuthentication no
 AllowGroups remote
 AuthorizedKeysFile .ssh/authorized_keys
 LogLevel DEBUG3
-SyslogFacility AUTH
+SyslogFacility AUTHPRIV
+Subsystem sftp /usr/lib/openssh/sftp-server -l DEBUG3

@@ -262,7 +262,7 @@ services:
       - '2223:22'
 
   mosh:
-    build: 
+    build:
       context: .
       dockerfile: mosh/Dockerfile
     environment:
@@ -302,7 +302,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     ports:
       - '2227:22'
-  
+
   pf-disabled:
     build: .
     environment:
@@ -311,3 +311,49 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     ports:
       - '2228:22'
+
+  pf-case-jump:
+    build: .
+    environment:
+      ADMIN: qa
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_rsa.pub
+    depends_on: [pf-case-keystorage, pf-case-target]
+    ports:
+      - '2230:22'
+    networks:
+     - pf-case-keystorage
+     - pf-case-target
+
+
+  pf-case-keystorage:
+    build: .
+    command: bash -c 'cat /tmp/id_rsa1 > /home/$$ADMIN/id_rsa;/usr/sbin/sshd -D'
+    environment:
+      ADMIN: qa
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_ed25519.pub
+    networks:
+      pf-case-keystorage:
+        ipv4_address: 172.25.1.101
+
+  pf-case-target:
+    build: .
+    environment:
+      ADMIN: qa
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_rsa1.pub
+    networks:
+      pf-case-target:
+        ipv4_address: 172.25.2.101
+
+networks:
+  pf-case-keystorage:
+    ipam:
+      config:
+      - subnet: 172.25.1.0/24
+  pf-case-target:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.25.2.0/24

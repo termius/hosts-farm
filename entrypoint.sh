@@ -34,5 +34,8 @@ add_credential $ADMIN
 touch /var/log/auth.log
 chmod 666 /var/log/auth.log
 
+/usr/sbin/syslog-ng -F &
+
 echo 'Start daemon'
-/usr/sbin/sshd -D
+echo "$@"
+exec "$@"
