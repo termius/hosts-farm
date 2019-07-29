@@ -2,6 +2,7 @@ version: '2'
 
 services:
   pass:
+    mem_limit: 64m
     build:
       context: .
       dockerfile: pass/Dockerfile
@@ -12,6 +13,7 @@ services:
       - '2201:22'
 
   key:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: sa
@@ -21,6 +23,7 @@ services:
       - '2202:22'
 
   http-proxy:
+    mem_limit: 64m
     build: http-proxy
     ports:
       - '8888:3128'
@@ -29,6 +32,7 @@ services:
       - key
 
   authykey:
+    mem_limit: 64m
     build: authykey
     environment:
       AUTHY_API_KEY: ${AUTHY_API_KEY}
@@ -38,6 +42,7 @@ services:
       - '2203:22'
 
   authypass:
+    mem_limit: 64m
     build: authypass
     environment:
       AUTHY_API_KEY: ${AUTHY_API_KEY}
@@ -47,6 +52,7 @@ services:
       - '2204:22'
 
   otp:
+    mem_limit: 64m
     build: otp
     environment:
       ADMIN: sa
@@ -55,6 +61,7 @@ services:
       - '2205:22'
 
   ed25519:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: sa
@@ -64,6 +71,7 @@ services:
       - '2206:22'
 
   ecdsa-nistp256:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: sa
@@ -73,6 +81,7 @@ services:
       - '2207:22'
 
   hmac-sha2-256:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: sa
@@ -83,6 +92,7 @@ services:
       - '2208:22'
 
   hmac-sha2-512:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: sa
@@ -93,6 +103,7 @@ services:
       - '2209:22'
 
   chacha20-poly1305_at_openssh.com:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: sa
@@ -103,6 +114,7 @@ services:
       - '2210:22'
 
   aes128-ctr:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: sa
@@ -113,6 +125,7 @@ services:
       - '2211:22'
 
   aes192-ctr:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: sa
@@ -123,6 +136,7 @@ services:
       - '2212:22'
 
   aes256-ctr:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: sa
@@ -133,6 +147,7 @@ services:
       - '2213:22'
 
   curve25519-sha256:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: sa
@@ -143,6 +158,7 @@ services:
       - '2214:22'
 
   diffie-hellman-group-exchange-sha256:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: sa
@@ -153,6 +169,7 @@ services:
       - '2215:22'
 
   telnet:
+    mem_limit: 64m
     build: telnet
     environment:
       ADMIN: sa
@@ -161,6 +178,7 @@ services:
       - '2216:23'
 
   chain1:
+    mem_limit: 64m
     build:
       context: .
       dockerfile: pass/Dockerfile
@@ -175,6 +193,7 @@ services:
       - http-proxy-chain2
 
   chain2:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: chain2
@@ -186,6 +205,7 @@ services:
       - http-proxy-chain3
 
   chain3:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: chain3
@@ -193,6 +213,7 @@ services:
       PUB_KEY_NAME: id_rsa1.pub
 
   http-proxy-chain1:
+    mem_limit: 64m
     build: http-proxy
     ports:
       - '8889:3128'
@@ -200,16 +221,19 @@ services:
       - chain1
 
   http-proxy-chain2:
+    mem_limit: 64m
     build: http-proxy
     links:
       - chain2
 
   http-proxy-chain3:
+    mem_limit: 64m
     build: http-proxy
     links:
       - chain3
 
   ecdsa-nistp384:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: sa
@@ -219,6 +243,7 @@ services:
       - '2218:22'
 
   ecdsa-nistp521:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: sa
@@ -228,12 +253,14 @@ services:
       - '2219:22'
 
   yuubikey:
+    mem_limit: 64m
     build: yubikey
     environment:
       ADMIN: sa
     ports:
       - '2220:22'
   yuubikey-pam:
+    mem_limit: 64m
     build: yubikey-pam
     environment:
       ADMIN: sa
@@ -241,6 +268,7 @@ services:
       - '2221:22'
 
   agent-forwarding-disabled:
+    mem_limit: 64m
     build:
       context: .
       dockerfile: agent-forwarding-disabled/Dockerfile
@@ -251,6 +279,7 @@ services:
       - '2222:22'
 
   gateway-ports:
+    mem_limit: 64m
     build:
       context: .
       dockerfile: gateway-ports/Dockerfile
@@ -262,6 +291,7 @@ services:
       - '2223:22'
 
   mosh:
+    mem_limit: 64m
     build:
       context: .
       dockerfile: mosh/Dockerfile
@@ -274,6 +304,7 @@ services:
       - '60001:60001/udp'
 
   multiple-auths:
+    mem_limit: 64m
     build:
       context: .
       dockerfile: multiple-auths/Dockerfile
@@ -285,6 +316,7 @@ services:
       - '2225:22'
 
   keyboard-interactive-pass:
+    mem_limit: 64m
     build:
       context: .
       dockerfile: keyboard-interactive-pass/Dockerfile
@@ -295,6 +327,7 @@ services:
       - '2226:22'
 
   sftp-disabled:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: sa
@@ -304,6 +337,7 @@ services:
       - '2227:22'
 
   pf-disabled:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: sa
@@ -313,6 +347,7 @@ services:
       - '2228:22'
 
   pf-case-jump:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: qa
@@ -327,6 +362,7 @@ services:
 
 
   pf-case-keystorage:
+    mem_limit: 64m
     build: .
     command: bash -c 'cat /tmp/id_rsa1 > /home/$$ADMIN/id_rsa;/usr/sbin/sshd -D'
     environment:
@@ -338,6 +374,7 @@ services:
         ipv4_address: 172.25.1.101
 
   pf-case-target:
+    mem_limit: 64m
     build: .
     environment:
       ADMIN: qa
