@@ -6,3 +6,4 @@ PasswordAuthentication no
 LogLevel DEBUG3
 SyslogFacility AUTH
 UsePAM yes
+PrintLastLog no

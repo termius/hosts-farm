@@ -3,3 +3,4 @@ HostbasedAuthentication no
 PasswordAuthentication yes
 AllowGroups remote
 LogLevel DEBUG3
+PrintLastLog no
