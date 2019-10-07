@@ -6,3 +6,4 @@ AuthorizedKeysFile .ssh/authorized_keys
 LogLevel DEBUG3
 SyslogFacility AUTH
 AuthenticationMethods publickey,password
+PrintLastLog no
