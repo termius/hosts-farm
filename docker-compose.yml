@@ -383,6 +383,16 @@ services:
     networks:
       pf-case-target:
         ipv4_address: 172.25.2.101
+  duokey:
+    mem_limit: 64m
+    build: duo
+    environment:
+      ADMIN: sa
+      DUO_INTEGRATION_KEY: $DUO_INTEGRATION_KEY
+      DUO_SECRET_KEY: $DUO_SECRET_KEY
+      DUO_API_HOSTNAME: $DUO_API_HOSTNAME
+    ports:
+      - '2231:22'
 
 networks:
   pf-case-keystorage:

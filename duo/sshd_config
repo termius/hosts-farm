@@ -1,0 +1,11 @@
+PubkeyAuthentication yes
+HostbasedAuthentication no
+PasswordAuthentication no
+AuthenticationMethods keyboard-interactive
+UsePAM yes
+ChallengeResponseAuthentication yes
+UseDNS no
+AllowGroups remote
+LogLevel DEBUG3
+SyslogFacility AUTHPRIV
+PrintLastLog no
