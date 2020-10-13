@@ -23,7 +23,7 @@ services:
       - '2202:22'
 
   http-proxy:
-    mem_limit: 256m
+    mem_limit: 512m
     build: http-proxy
     ports:
       - '8888:3128'
@@ -392,6 +392,22 @@ services:
       CONFIG: sshd_config
     ports:
       - '2231:22'
+
+  mosh-unstable:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: mosh/Dockerfile
+    cap_add:
+      - NET_ADMIN
+    environment:
+      UNSTABLE_NETWORK: "true"
+      ADMIN: sa
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_rsa.pub
+    ports:
+      - '2232:22'
+      - '60003:60003/udp'
 
 networks:
   pf-case-keystorage:
