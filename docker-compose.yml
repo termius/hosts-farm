@@ -23,7 +23,7 @@ services:
       - '2202:22'
 
   http-proxy:
-    mem_limit: 64m
+    mem_limit: 256m
     build: http-proxy
     ports:
       - '8888:3128'
@@ -213,7 +213,7 @@ services:
       PUB_KEY_NAME: id_rsa1.pub
 
   http-proxy-chain1:
-    mem_limit: 64m
+    mem_limit: 256m
     build: http-proxy
     ports:
       - '8889:3128'
@@ -221,13 +221,13 @@ services:
       - chain1
 
   http-proxy-chain2:
-    mem_limit: 64m
+    mem_limit: 256m
     build: http-proxy
     links:
       - chain2
 
   http-proxy-chain3:
-    mem_limit: 64m
+    mem_limit: 256m
     build: http-proxy
     links:
       - chain3
