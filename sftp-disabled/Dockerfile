@@ -1,7 +1,8 @@
 FROM ubuntu:18.04
 
 RUN apt-get update -y && apt-get upgrade -y && \
-    apt-get install -y openssh-server
+  apt-get install -y openssh-server gettext-base syslog-ng \
+    tmux byobu emacs vim mc htop curl
 
 ADD entrypoint.sh /usr/bin/entrypoint.sh
 ADD keys /tmp/

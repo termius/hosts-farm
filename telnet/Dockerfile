@@ -1,6 +1,7 @@
 FROM centos:centos6
 
-RUN yum install telnet telnet-server -y
+RUN yum install telnet telnet-server -y && \
+  yum install -y tmux byobu emacs vim mc htop curl
 
 ADD telnet /etc/xinetd.d/
 ADD entrypoint.sh /usr/bin/entrypoint.sh

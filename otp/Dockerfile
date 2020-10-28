@@ -1,10 +1,11 @@
 FROM ubuntu:18.04
 
-RUN apt-get update -y && apt-get upgrade -y && apt-get install -y curl
-RUN \
-    apt-get update && \
-    apt-get install -y openssh-server && \
-    apt-get install -y otpw-bin libpam-otpw
+RUN apt-get update -y && apt-get upgrade -y && \
+  apt-get install -y openssh-server gettext-base syslog-ng \
+    tmux byobu emacs vim mc htop curl
+
+RUN apt-get install -y otpw-bin libpam-otpw
+
 ADD entrypoint.sh /usr/bin/entrypoint.sh
 ADD sshd_config /etc/ssh/sshd_config
 ADD pam_sshd /etc/pam.d/sshd
