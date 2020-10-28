@@ -384,6 +384,15 @@ services:
       pf-case-target:
         ipv4_address: 172.25.2.101
 
+  client-cert:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config
+    ports:
+      - '2231:22'
+
 networks:
   pf-case-keystorage:
     ipam:
