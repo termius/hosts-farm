@@ -386,7 +386,7 @@ services:
 
   client-cert:
     mem_limit: 64m
-    build: .
+    build: client-cert
     environment:
       ADMIN: sa
       CONFIG: sshd_config

@@ -1,7 +1,7 @@
+PubkeyAuthentication yes
 TrustedUserCAKeys /etc/ssh/ca.pub
-PubkeyAuthentication no
 HostbasedAuthentication no
-PasswordAuthentication yes
+PasswordAuthentication no
 AllowGroups remote
 LogLevel DEBUG3
 PrintLastLog no
