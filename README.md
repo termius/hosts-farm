@@ -31,52 +31,53 @@ When you want to add new server configuration follow step below:
 
 ## Table of available hosts
 
-|                Service               |  Port |     User    |   Password  |                    Key                   |
-|:------------------------------------:|:-----:|:-----------:|:-----------:|:----------------------------------------:|
-|                 pass                 |  2201 |      sa     |     pass    |                     -                    |
-|                  key                 |  2202 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
-|               authykey               |  2203 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
-|               authypass              |  2204 | Authy users | authy_token |                     -                    |
-|                  otp                 |  2205 |      sa     |      -      |           [keys](/otp/keys.txt)          |
-|                ed25519               |  2206 |      sa     |      -      |      [ed25519 key](/keys/id_ed25519)     |
-|            ecdsa-nistp256            |  2207 |      sa     |      -      | [ecDSA 256 key](/keys/id_ecdsa_nistp256) |
-|            ecdsa-nistp384            |  2218 |      sa     |      -      | [ecDSA 384 key](/keys/id_ecdsa_nistp384) |
-|            ecdsa-nistp521            |  2219 |      sa     |      -      | [ecDSA 521 key](/keys/id_ecdsa_nistp521) |
-|             hmac-sha2-256            |  2208 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
-|             hmac-sha2-512            |  2209 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
-|   chacha20-poly1305_at_openssh.com   |  2210 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
-|              aes128-ctr              |  2211 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
-|              aes192-ctr              |  2212 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
-|              aes256-ctr              |  2213 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
-|           curve25519-sha256          |  2214 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
-| diffie-hellman-group-exchange-sha256 |  2215 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
-|                telnet                |  2216 |      sa     |     pass    |                     -                    |
-|                chain1                |  2217 |    chain1   |      1      |                     -                    |
-|                chain2                |   -   |    chain2   |      -      |          [rsa key](/keys/id_rsa)         |
-|                chain3                |   -   |    chain3   |      -      |         [rsa1 key](/keys/id_rsa1)        |
-|               yuubikey               |  2220 |      sa     |      -      |                     -                    |
-|             yuubikey-pam             |  2221 |      sa     |      -      |                     -                    |
-|       agent-forwarding-disabled      |  2222 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
-|             gateway-ports            |  2223 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
-|                 mosh                 |  2224 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
-|            multiple-auths            |  2225 |      sa     |     pass    |          [rsa key](/keys/id_rsa)         |
-|       keyboard-interactive-pass      |  2226 |      sa     |     pass    |                     -                    |
-|             sftp-disabled            |  2227 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
-|              pf-disabled             |  2228 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
-|             pf-case-jump             |  2230 |      sa     |      -      |          [rsa key](/keys/id_rsa)         |
+|               Service                | Port |    User     |  Password   |                      Key                      |
+|:------------------------------------:|:----:|:-----------:|:-----------:|:---------------------------------------------:|
+|                 pass                 | 2201 |     sa      |    pass     |                       -                       |
+|                 key                  | 2202 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|               authykey               | 2203 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|              authypass               | 2204 | Authy users | authy_token |                       -                       |
+|                 otp                  | 2205 |     sa      |      -      |             [keys](/otp/keys.txt)             |
+|               ed25519                | 2206 |     sa      |      -      |        [ed25519 key](/keys/id_ed25519)        |
+|            ecdsa-nistp256            | 2207 |     sa      |      -      |   [ecDSA 256 key](/keys/id_ecdsa_nistp256)    |
+|            ecdsa-nistp384            | 2218 |     sa      |      -      |   [ecDSA 384 key](/keys/id_ecdsa_nistp384)    |
+|            ecdsa-nistp521            | 2219 |     sa      |      -      |   [ecDSA 521 key](/keys/id_ecdsa_nistp521)    |
+|            hmac-sha2-256             | 2208 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|            hmac-sha2-512             | 2209 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|   chacha20-poly1305_at_openssh.com   | 2210 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|              aes128-ctr              | 2211 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|              aes192-ctr              | 2212 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|              aes256-ctr              | 2213 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|          curve25519-sha256           | 2214 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+| diffie-hellman-group-exchange-sha256 | 2215 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|                telnet                | 2216 |     sa      |    pass     |                       -                       |
+|                chain1                | 2217 |   chain1    |      1      |                       -                       |
+|                chain2                |  -   |   chain2    |      -      |            [rsa key](/keys/id_rsa)            |
+|                chain3                |  -   |   chain3    |      -      |           [rsa1 key](/keys/id_rsa1)           |
+|               yuubikey               | 2220 |     sa      |      -      |                       -                       |
+|             yuubikey-pam             | 2221 |     sa      |      -      |                       -                       |
+|      agent-forwarding-disabled       | 2222 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|            gateway-ports             | 2223 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|                 mosh                 | 2224 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|            multiple-auths            | 2225 |     sa      |    pass     |            [rsa key](/keys/id_rsa)            |
+|      keyboard-interactive-pass       | 2226 |     sa      |    pass     |                       -                       |
+|            sftp-disabled             | 2227 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|             pf-disabled              | 2228 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|             pf-case-jump             | 2230 |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|             client-cert              | 2231 |     sa      |      -      | [user certificate key](/client-cert/user-key) |
 
 ### Table of proxy hosts
 
-|      Hostname     |  Port | Availability | Proxied hosts |
-|:-----------------:|:-----:|:------------:|:-------------:|
-|     http-proxy    |  8888 |    global    |   pass, key   |
-| http-proxy-chain1 |  8889 |    global    |     chain1    |
-| http-proxy-chain2 |  3128 |  from chain1 |     chain2    |
-| http-proxy-chain3 |  3128 |  from chain2 |     chain3    |
+|     Hostname      | Port | Availability | Proxied hosts |
+|:-----------------:|:----:|:------------:|:-------------:|
+|    http-proxy     | 8888 |    global    |   pass, key   |
+| http-proxy-chain1 | 8889 |    global    |    chain1     |
+| http-proxy-chain2 | 3128 | from chain1  |    chain2     |
+| http-proxy-chain3 | 3128 | from chain2  |    chain3     |
 
 ### Table of Port Forwarding Case
 
-|               Hostname              |  Port |    Availability    |                 Authentication                |
-|:-----------------------------------:|:-----:|:------------------:|:---------------------------------------------:|
-| pf-case-keystorage, 172.25.1.101/24 |   22  | from the jump host |      [ed25519 key](/keys/id_ed25519.pub)      |
-|   pf-case-target, 172.25.2.101/24   |   22  | from the jump host | get a key from pf-case-keystorage `~/.id_rsa` |
+|              Hostname               | Port |    Availability    |                Authentication                 |
+|:-----------------------------------:|:----:|:------------------:|:---------------------------------------------:|
+| pf-case-keystorage, 172.25.1.101/24 |  22  | from the jump host |      [ed25519 key](/keys/id_ed25519.pub)      |
+|   pf-case-target, 172.25.2.101/24   |  22  | from the jump host | get a key from pf-case-keystorage `~/.id_rsa` |
