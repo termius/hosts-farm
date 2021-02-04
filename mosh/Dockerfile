@@ -1,12 +1,15 @@
 FROM ubuntu:18.04
 
+RUN apt-get update -y && apt-get install -y locales && \
+  locale-gen en_US.UTF-8 && update-locale LC_ALL="en_US.UTF-8"
+ENV LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update -y && apt-get upgrade -y && \
   apt-get install -y openssh-server gettext-base syslog-ng \
-    tmux byobu emacs vim mc htop curl
+    tmux byobu emacs vim mc htop curl \
+    bb cmatrix libaa-bin
 
-RUN apt-get install -y mosh locales iproute2
-
-RUN locale-gen en_US.UTF-8
+RUN apt-get install -y mosh iproute2
 
 ADD mosh/entrypoint.sh /usr/bin/entrypoint.sh
 ADD mosh/sshd_config /etc/ssh/sshd_config

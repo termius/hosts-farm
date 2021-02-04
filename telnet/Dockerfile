@@ -1,4 +1,4 @@
-FROM centos:centos6
+FROM centos:centos7
 
 RUN yum install telnet telnet-server -y && \
   yum install -y tmux byobu emacs vim mc htop curl

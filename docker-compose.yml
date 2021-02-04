@@ -290,7 +290,7 @@ services:
     ports:
       - '2223:22'
 
-  mosh:
+  mosh-key:
     mem_limit: 64m
     build:
       context: .
@@ -301,7 +301,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     ports:
       - '2224:22'
-      - '60001:60001/udp'
+      - '60001-60010:60001-60010/udp'
 
   multiple-auths:
     mem_limit: 64m
@@ -407,7 +407,20 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     ports:
       - '2232:22'
-      - '60003:60003/udp'
+      - '60021-60030:60021-60030/udp'
+
+  mosh-pass:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: mosh/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+      CONFIG: sshd_config
+    ports:
+      - '2233:22'
+      - '60011-60020:60011-60020/udp'
 
 networks:
   pf-case-keystorage:

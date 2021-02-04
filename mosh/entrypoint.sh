@@ -5,8 +5,7 @@ create_user() {
     useradd -d /home/$1 -G remote -m $1
 }
 
-add_credential() {
-    passwd -d $1
+add_key() {
     mkdir -p /home/$1/.ssh/
     cat /tmp/$PUB_KEY_NAME > /home/$1/.ssh/authorized_keys
     chmod 700 /home/$1/.ssh
@@ -24,10 +23,20 @@ add_credential() {
     fi
 }
 
+add_pass() {
+    mkdir -p /home/$1/.ssh/
+    if [ -z "$ADMIN_PASS" ]; then
+        passwd -d $1
+    else
+        echo "$ADMIN:$ADMIN_PASS" | chpasswd
+    fi
+}
+
 mkdir /var/run/sshd
 
 create_user $ADMIN
-add_credential $ADMIN
+add_key $ADMIN
+add_pass $ADMIN
 
 touch /var/log/auth.log
 chmod 666 /var/log/auth.log
