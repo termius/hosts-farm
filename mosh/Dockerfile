@@ -4,7 +4,7 @@ RUN apt-get update -y && apt-get upgrade -y && \
   apt-get install -y openssh-server gettext-base syslog-ng \
     tmux byobu emacs vim mc htop curl
 
-RUN apt-get install -y mosh locales
+RUN apt-get install -y mosh locales iproute2
 
 RUN locale-gen en_US.UTF-8
 

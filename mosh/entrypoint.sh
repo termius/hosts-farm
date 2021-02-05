@@ -32,5 +32,9 @@ add_credential $ADMIN
 touch /var/log/auth.log
 chmod 666 /var/log/auth.log
 
+if [ -n "$UNSTABLE_NETWORK" ]; then
+    tc qdisc add dev eth0 root netem delay 500ms 500ms drop 10%
+fi
+
 echo 'Start sshd'
 /usr/sbin/sshd -D
