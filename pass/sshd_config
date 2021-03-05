@@ -4,3 +4,4 @@ PasswordAuthentication yes
 AllowGroups remote
 LogLevel DEBUG3
 PrintLastLog no
+Subsystem       sftp    /usr/lib/openssh/sftp-server
