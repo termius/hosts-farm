@@ -422,6 +422,17 @@ services:
       - '2233:22'
       - '60011-60020:60011-60020/udp'
 
+  containerssh:
+    build: containerssh
+    user: root
+    ports:
+      - 2322:2222
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  containerssh-authconfig:
+    # The test-authconfig server lets in the "foo" user with the "bar" password.
+    image: containerssh/containerssh-test-authconfig:0.4.0
+
 networks:
   pf-case-keystorage:
     ipam:
