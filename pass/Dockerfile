@@ -10,7 +10,8 @@ RUN apt-get update -y && apt-get upgrade -y && \
     bb cmatrix libaa-bin
 
 ADD pass/entrypoint.sh /usr/bin/entrypoint.sh
-ADD pass/sshd_config /etc/ssh/sshd_config
+ADD pass/bash_logout /tmp/bash_logout
+ADD pass/sshd_config pass/sshd_config_export_key /tmp/
 ADD keys /tmp/
 
 RUN chmod +x /usr/bin/entrypoint.sh

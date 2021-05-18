@@ -67,6 +67,7 @@ When you want to add new server configuration follow step below:
 |             client-cert              |          2231           |     sa      |      -      | [user certificate key](/client-cert/user-key) |
 |            mosh-unstable             | 2232, 60021-60030 (udp) |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
 |              mosh-pass               | 2233, 60011-60020 (udp) |     sa      |    pass     |                       -                       |
+|              export-key              |          2234           |     sa      |    pass     |                       -                       |
 
 ### Table of proxy hosts
 
