@@ -2,12 +2,14 @@
 
 create_user() {
     groupadd remote
-    useradd -d /home/$1 -G remote -m $1
+    useradd -s /bin/bash -d /home/$1 -G remote -m $1
 }
 
 add_credential() {
     mkdir -p /home/$1/.ssh/
     echo "$ADMIN:$ADMIN_PASS" | chpasswd
+    cp /tmp/bash_logout /home/$1/.bash_logout
+    chown -R $1:remote /home/$1/.bash_logout
 
     if [ -n "${PRIVATE_KEY_NAME}" ]; then
         PUB_KEY="$PRIVATE_KEY_NAME.pub"
@@ -20,6 +22,8 @@ add_credential() {
     fi
 }
 
+envsubst < /tmp/$CONFIG > "/etc/ssh/sshd_config"
+
 mkdir /var/run/sshd
 
 create_user $ADMIN
@@ -29,4 +33,4 @@ touch /var/log/auth.log
 chmod 666 /var/log/auth.log
 
 echo 'Start daemon'
-/usr/sbin/sshd -D
+exec /usr/sbin/sshd -D

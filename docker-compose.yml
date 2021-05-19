@@ -422,6 +422,19 @@ services:
       - '2233:22'
       - '60011-60020:60011-60020/udp'
 
+  export-key:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: pass/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+      CONFIG: sshd_config_export_key
+      PRIVATE_KEY_NAME: id_rsa.pub
+    ports:
+      - '2234:22'
+
 networks:
   pf-case-keystorage:
     ipam:
