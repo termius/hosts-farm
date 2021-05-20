@@ -68,6 +68,8 @@ When you want to add new server configuration follow step below:
 |            mosh-unstable             | 2232, 60021-60030 (udp) |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
 |              mosh-pass               | 2233, 60011-60020 (udp) |     sa      |    pass     |                       -                       |
 |              export-key              |          2234           |     sa      |    pass     |                       -                       |
+|           disabled-rsa-sha           |          2235           |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
+|             dropbear-key             |          2236           |     sa      |      -      |            [rsa key](/keys/id_rsa)            |
 
 ### Table of proxy hosts
 
