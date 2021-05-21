@@ -9,9 +9,14 @@ RUN apt-get update -y && apt-get upgrade -y && \
     tmux byobu emacs vim mc htop curl \
     bb cmatrix libaa-bin
 
-ADD entrypoint.sh /usr/bin/entrypoint.sh
 ADD sshd_configs_raw /tmp/
 ADD keys /tmp/
+
+ADD entrypoint.sh /usr/bin/entrypoint.sh
 RUN chmod +x /usr/bin/entrypoint.sh
+
+ADD sanitize-auth-log.sh /usr/bin/sanitize-auth-log.sh
+RUN chmod +x /usr/bin/sanitize-auth-log.sh
+
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD /usr/sbin/sshd -D

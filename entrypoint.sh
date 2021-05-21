@@ -35,6 +35,7 @@ touch /var/log/auth.log
 chmod 666 /var/log/auth.log
 
 /usr/sbin/syslog-ng -F &
+/bin/sanitize-auth-log.sh &
 
 echo 'Start daemon'
 echo "$@"
