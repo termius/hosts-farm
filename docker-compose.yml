@@ -9,6 +9,7 @@ services:
     environment:
       ADMIN: sa
       ADMIN_PASS: pass
+      CONFIG: sshd_config
     ports:
       - '2201:22'
 
