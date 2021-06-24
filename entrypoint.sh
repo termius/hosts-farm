@@ -8,7 +8,7 @@ create_user() {
 add_credential() {
     passwd -d $1
     mkdir -p /home/$1/.ssh/
-    cat /tmp/$PUB_KEY_NAME > /home/$1/.ssh/authorized_keys
+    (cd /tmp && cat $PUB_KEY_NAME > /home/$1/.ssh/authorized_keys)
     chmod 700 /home/$1/.ssh
     chmod 600 /home/$1/.ssh/authorized_keys
     chown -R $1:remote /home/$1/.ssh/
