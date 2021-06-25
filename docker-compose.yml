@@ -32,6 +32,18 @@ services:
       - pass
       - key
 
+  http-proxy-authenticated:
+    mem_limit: 512m
+    build:
+      context: http-proxy
+      args:
+        SQUID_CONFIG: authenticated-squid.conf
+    ports:
+      - '8890:3128'
+    links:
+      - pass
+      - key
+
   authykey:
     mem_limit: 64m
     build: authykey
