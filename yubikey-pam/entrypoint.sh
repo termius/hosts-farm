@@ -2,7 +2,7 @@
 
 create_user() {
     groupadd remote
-    useradd -d /home/$1 -G remote -m $1
+    useradd -s /bin/bash -d /home/$1 -G remote -m $1
 }
 
 mkdir /var/run/sshd

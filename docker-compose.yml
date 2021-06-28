@@ -9,6 +9,7 @@ services:
     environment:
       ADMIN: sa
       ADMIN_PASS: pass
+      CONFIG: sshd_config
     ports:
       - '2201:22'
 
@@ -431,9 +432,32 @@ services:
       ADMIN: sa
       ADMIN_PASS: pass
       CONFIG: sshd_config_export_key
-      PRIVATE_KEY_NAME: id_rsa.pub
+      PRIVATE_KEY_NAME: id_rsa
     ports:
       - '2234:22'
+
+  disabled-rsa-sha:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+      CONFIG: sshd_config_rsa_sha2
+      PUB_KEY_NAME: id_rsa.pub
+    ports:
+      - '2235:22'
+
+  dropbear:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: dropbear/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+      PUB_KEY_NAME: id_rsa.pub
+    ports:
+      - '2236:22'
 
 networks:
   pf-case-keystorage:

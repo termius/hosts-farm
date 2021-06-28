@@ -2,7 +2,7 @@
 
 create_user() {
     groupadd remote
-    useradd -d /home/$1 -G remote -m $1
+    useradd -s /bin/bash -d /home/$1 -G remote -m $1
 }
 
 add_credential() {
@@ -35,6 +35,7 @@ touch /var/log/auth.log
 chmod 666 /var/log/auth.log
 
 /usr/sbin/syslog-ng -F &
+/bin/sanitize-auth-log.sh &
 
 echo 'Start daemon'
 echo "$@"
