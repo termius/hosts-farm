@@ -41,6 +41,9 @@ add_pass $ADMIN
 touch /var/log/auth.log
 chmod 666 /var/log/auth.log
 
+/usr/sbin/syslog-ng -F &
+/bin/sanitize-auth-log.sh &
+
 if [ -n "$UNSTABLE_NETWORK" ]; then
     tc qdisc add dev eth0 root netem delay 500ms 500ms drop 10%
 fi

@@ -32,6 +32,15 @@ services:
       - pass
       - key
 
+  socks5-proxy:
+    mem_limit: 512m
+    build: socks5
+    ports:
+      - '1080:1080'
+    links:
+      - pass
+      - key
+
   http-proxy-authenticated:
     mem_limit: 512m
     build:
@@ -470,6 +479,16 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     ports:
       - '2236:22'
+
+  putty:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config
+      PUB_KEY_NAME: putty_rsa.pub putty_rsa_encrypted.pub
+    ports:
+      - '2237:22'
 
 networks:
   pf-case-keystorage:

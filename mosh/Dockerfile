@@ -16,4 +16,7 @@ ADD mosh/sshd_config /etc/ssh/sshd_config
 ADD keys /tmp/
 
 RUN chmod +x /usr/bin/entrypoint.sh
+ADD sanitize-auth-log.sh /usr/bin/sanitize-auth-log.sh
+RUN chmod +x /usr/bin/sanitize-auth-log.sh
+
 CMD /usr/bin/entrypoint.sh

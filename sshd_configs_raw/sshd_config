@@ -7,3 +7,4 @@ LogLevel DEBUG3
 SyslogFacility AUTHPRIV
 Subsystem sftp /usr/lib/openssh/sftp-server -l DEBUG3
 PrintLastLog no
+AcceptEnv LANG LC_*
