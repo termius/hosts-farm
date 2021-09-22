@@ -490,6 +490,18 @@ services:
     ports:
       - '2237:22'
 
+  tinyssh:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: tinyssh/Dockerfile
+    environment:
+      ADMIN: sa
+      PUB_KEY_NAME: id_ed25519.pub
+    ports:
+      - '2238:22'
+
+
 networks:
   pf-case-keystorage:
     ipam:
