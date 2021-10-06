@@ -486,7 +486,7 @@ services:
     environment:
       ADMIN: sa
       CONFIG: sshd_config
-      PUB_KEY_NAME: putty_rsa.pub putty_rsa_encrypted.pub
+      PUB_KEY_NAME: putty_rsa.pub putty_rsa_encrypted.pub putty3_rsa_encrypted.pub
     ports:
       - '2237:22'
 

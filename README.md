@@ -77,6 +77,7 @@ When you want to add new server configuration follow step below:
 Passphrase for [`keys/id_rsa_encrypted`](/keys/id_rsa_encrypted) is `termius-test`.
 
 Passphrase for [`keys/putty_rsa_encrypted`](/keys/putty_rsa_encrypted) is `test`.
+Passphrase for [`keys/putty3_rsa_encrypted`](/keys/putty3_rsa_encrypted) is `testppk3`.
 
 ### Table of proxy hosts
 
