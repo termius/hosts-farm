@@ -1,12 +1,18 @@
-FROM centos:centos6
+FROM ubuntu:20.04
 
-RUN yum install telnet telnet-server -y && \
-  yum install -y tmux byobu emacs vim mc htop curl
+RUN apt-get update -y && apt-get install -y locales && \
+  locale-gen en_US.UTF-8 && update-locale LC_ALL="en_US.UTF-8"
+ENV LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update -y && apt-get upgrade -y && \
+  apt-get install -y xinetd telnetd gettext-base syslog-ng \
+    tmux byobu emacs vim mc htop curl \
+    bb cmatrix libaa-bin
+
 
 ADD telnet /etc/xinetd.d/
 ADD entrypoint.sh /usr/bin/entrypoint.sh
 
-RUN chkconfig telnet on
 RUN chmod +x /usr/bin/entrypoint.sh
 
 ENTRYPOINT /usr/bin/entrypoint.sh
