@@ -274,14 +274,7 @@ services:
     ports:
       - '2219:22'
 
-  yuubikey:
-    mem_limit: 64m
-    build: yubikey
-    environment:
-      ADMIN: sa
-    ports:
-      - '2220:22'
-  yuubikey-pam:
+  yubikey-pam:
     mem_limit: 64m
     build: yubikey-pam
     environment:

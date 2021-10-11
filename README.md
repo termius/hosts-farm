@@ -54,8 +54,7 @@ When you want to add new server configuration follow step below:
 |                chain1                |          2217           |   chain1    |      1      |                                         -                                         |
 |                chain2                |            -            |   chain2    |      -      |                              [rsa key](/keys/id_rsa)                              |
 |                chain3                |            -            |   chain3    |      -      |                             [rsa1 key](/keys/id_rsa1)                             |
-|               yuubikey               |          2220           |     sa      |      -      |                                         -                                         |
-|             yuubikey-pam             |          2221           |     sa      |      -      |                                         -                                         |
+|             yubikey-pam             |          2221           |     sa      |      -      |                                         -                                         |
 |      agent-forwarding-disabled       |          2222           |     sa      |      -      |                              [rsa key](/keys/id_rsa)                              |
 |            gateway-ports             |          2223           |     sa      |      -      |                              [rsa key](/keys/id_rsa)                              |
 |                 mosh                 | 2224, 60001-60010 (udp) |     sa      |      -      |                              [rsa key](/keys/id_rsa)                              |
