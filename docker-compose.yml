@@ -10,6 +10,7 @@ services:
       ADMIN: sa
       ADMIN_PASS: pass
       CONFIG: sshd_config
+    restart: "unless-stopped"
     ports:
       - '2201:22'
 
@@ -20,6 +21,7 @@ services:
       ADMIN: sa
       CONFIG: sshd_config
       PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+    restart: "unless-stopped"
     ports:
       - '2202:22'
 
@@ -28,6 +30,7 @@ services:
     build: http-proxy
     ports:
       - '8888:3128'
+    restart: "unless-stopped"
     links:
       - pass
       - key
@@ -37,6 +40,7 @@ services:
     build: socks5
     ports:
       - '1080:1080'
+    restart: "unless-stopped"
     links:
       - pass
       - key
@@ -49,6 +53,7 @@ services:
         SQUID_CONFIG: authenticated-squid.conf
     ports:
       - '8890:3128'
+    restart: "unless-stopped"
     links:
       - pass
       - key
@@ -60,6 +65,7 @@ services:
       AUTHY_API_KEY: ${AUTHY_API_KEY}
       ADMIN_LIST: ${ADMIN_LIST}
       # template for it is "unixUserName:email:countrycode:phoneNumber unixUserName:email:countrycode:phoneNumber"
+    restart: "unless-stopped"
     ports:
       - '2203:22'
 
@@ -70,6 +76,7 @@ services:
       AUTHY_API_KEY: ${AUTHY_API_KEY}
       ADMIN_LIST: ${ADMIN_LIST}
       # template for it is "unixUserName:email:countrycode:phoneNumber unixUserName:email:countrycode:phoneNumber"
+    restart: "unless-stopped"
     ports:
       - '2204:22'
 
@@ -79,6 +86,7 @@ services:
     environment:
       ADMIN: sa
       ADMIN_PASS: 1
+    restart: "unless-stopped"
     ports:
       - '2205:22'
 
@@ -89,6 +97,7 @@ services:
       ADMIN: sa
       CONFIG: sshd_config
       PUB_KEY_NAME: id_ed25519.pub
+    restart: "unless-stopped"
     ports:
       - '2206:22'
 
@@ -99,6 +108,7 @@ services:
       ADMIN: sa
       CONFIG: sshd_config
       PUB_KEY_NAME: id_ecdsa_nistp256.pub
+    restart: "unless-stopped"
     ports:
       - '2207:22'
 
@@ -110,6 +120,7 @@ services:
       MAC: hmac-sha2-256
       CONFIG: sshd_config_macs
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2208:22'
 
@@ -121,6 +132,7 @@ services:
       MAC: hmac-sha2-512
       CONFIG: sshd_config_macs
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2209:22'
 
@@ -132,6 +144,7 @@ services:
       CIPHER: chacha20-poly1305@openssh.com
       CONFIG: sshd_config_ciphers
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2210:22'
 
@@ -143,6 +156,7 @@ services:
       CIPHER: aes128-ctr
       CONFIG: sshd_config_ciphers
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2211:22'
 
@@ -154,6 +168,7 @@ services:
       CIPHER: aes192-ctr
       CONFIG: sshd_config_ciphers
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2212:22'
 
@@ -165,6 +180,7 @@ services:
       CIPHER: aes256-ctr
       CONFIG: sshd_config_ciphers
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2213:22'
 
@@ -176,6 +192,7 @@ services:
       KEX: curve25519-sha256@libssh.org
       CONFIG: sshd_config_kex
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2214:22'
 
@@ -187,6 +204,7 @@ services:
       KEX: diffie-hellman-group-exchange-sha256
       CONFIG: sshd_config_kex
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2215:22'
 
@@ -196,6 +214,7 @@ services:
     environment:
       ADMIN: sa
       ADMIN_PASS: pass
+    restart: "unless-stopped"
     ports:
       - '2216:23'
 
@@ -210,6 +229,7 @@ services:
       PRIVATE_KEY_NAME: id_rsa
     ports:
       - '2217:22'
+    restart: "unless-stopped"
     links:
       - chain2
       - http-proxy-chain2
@@ -222,6 +242,7 @@ services:
       CONFIG: sshd_config
       PUB_KEY_NAME: id_rsa.pub
       PRIVATE_KEY_NAME: id_rsa1
+    restart: "unless-stopped"
     links:
       - chain3
       - http-proxy-chain3
@@ -233,24 +254,28 @@ services:
       ADMIN: chain3
       CONFIG: sshd_config
       PUB_KEY_NAME: id_rsa1.pub
+    restart: "unless-stopped"
 
   http-proxy-chain1:
     mem_limit: 256m
     build: http-proxy
     ports:
       - '8889:3128'
+    restart: "unless-stopped"
     links:
       - chain1
 
   http-proxy-chain2:
     mem_limit: 256m
     build: http-proxy
+    restart: "unless-stopped"
     links:
       - chain2
 
   http-proxy-chain3:
     mem_limit: 256m
     build: http-proxy
+    restart: "unless-stopped"
     links:
       - chain3
 
@@ -261,6 +286,7 @@ services:
       ADMIN: sa
       CONFIG: sshd_config
       PUB_KEY_NAME: id_ecdsa_nistp384.pub
+    restart: "unless-stopped"
     ports:
       - '2218:22'
 
@@ -271,6 +297,7 @@ services:
       ADMIN: sa
       CONFIG: sshd_config
       PUB_KEY_NAME: id_ecdsa_nistp521.pub
+    restart: "unless-stopped"
     ports:
       - '2219:22'
 
@@ -279,6 +306,7 @@ services:
     build: yubikey-pam
     environment:
       ADMIN: sa
+    restart: "unless-stopped"
     ports:
       - '2221:22'
 
@@ -290,6 +318,7 @@ services:
     environment:
       ADMIN: sa
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2222:22'
 
@@ -302,6 +331,7 @@ services:
       ADMIN: sa
       CONFIG: sshd_config
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2223:22'
 
@@ -314,6 +344,7 @@ services:
       ADMIN: sa
       CONFIG: sshd_config
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2224:22'
       - '60001-60010:60001-60010/udp'
@@ -327,6 +358,7 @@ services:
       ADMIN: sa
       ADMIN_PASS: pass
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2225:22'
 
@@ -338,6 +370,7 @@ services:
     environment:
       ADMIN: sa
       ADMIN_PASS: pass
+    restart: "unless-stopped"
     ports:
       - '2226:22'
 
@@ -348,6 +381,7 @@ services:
       ADMIN: sa
       CONFIG: sshd_config_no_sftp
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2227:22'
 
@@ -358,6 +392,7 @@ services:
       ADMIN: sa
       CONFIG: sshd_config_no_pf
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2228:22'
 
@@ -371,6 +406,7 @@ services:
     depends_on: [pf-case-keystorage, pf-case-target]
     ports:
       - '2230:22'
+    restart: "unless-stopped"
     networks:
      - pf-case-keystorage
      - pf-case-target
@@ -384,6 +420,7 @@ services:
       ADMIN: qa
       CONFIG: sshd_config
       PUB_KEY_NAME: id_ed25519.pub
+    restart: "unless-stopped"
     networks:
       pf-case-keystorage:
         ipv4_address: 172.25.1.101
@@ -395,6 +432,7 @@ services:
       ADMIN: qa
       CONFIG: sshd_config
       PUB_KEY_NAME: id_rsa1.pub
+    restart: "unless-stopped"
     networks:
       pf-case-target:
         ipv4_address: 172.25.2.101
@@ -405,6 +443,7 @@ services:
     environment:
       ADMIN: sa
       CONFIG: sshd_config
+    restart: "unless-stopped"
     ports:
       - '2231:22'
 
@@ -420,6 +459,7 @@ services:
       ADMIN: sa
       CONFIG: sshd_config
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2232:22'
       - '60021-60030:60021-60030/udp'
@@ -433,6 +473,7 @@ services:
       ADMIN: sa
       ADMIN_PASS: pass
       CONFIG: sshd_config
+    restart: "unless-stopped"
     ports:
       - '2233:22'
       - '60011-60020:60011-60020/udp'
@@ -447,6 +488,7 @@ services:
       ADMIN_PASS: pass
       CONFIG: sshd_config_export_key
       PRIVATE_KEY_NAME: id_rsa
+    restart: "unless-stopped"
     ports:
       - '2234:22'
 
@@ -458,6 +500,7 @@ services:
       ADMIN_PASS: pass
       CONFIG: sshd_config_rsa_sha2
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2235:22'
 
@@ -470,6 +513,7 @@ services:
       ADMIN: sa
       ADMIN_PASS: pass
       PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
     ports:
       - '2236:22'
 
@@ -480,6 +524,7 @@ services:
       ADMIN: sa
       CONFIG: sshd_config
       PUB_KEY_NAME: putty_rsa.pub putty_rsa_encrypted.pub putty3_rsa_encrypted.pub
+    restart: "unless-stopped"
     ports:
       - '2237:22'
 
@@ -491,6 +536,7 @@ services:
     environment:
       ADMIN: sa
       PUB_KEY_NAME: id_ed25519.pub
+    restart: "unless-stopped"
     ports:
       - '2238:22'
 
