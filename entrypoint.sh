@@ -37,6 +37,9 @@ chmod 666 /var/log/auth.log
 /usr/sbin/syslog-ng -F &
 /bin/sanitize-auth-log.sh &
 
+rm /etc/ssh/ssh_host_*_key
+ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key
+
 echo 'Start daemon'
 echo "$@"
 exec "$@"
