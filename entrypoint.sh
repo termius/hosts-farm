@@ -1,4 +1,5 @@
 #!/bin/bash
+# Copyright (c) 2020 Termius Corporation.
 
 create_user() {
     groupadd remote

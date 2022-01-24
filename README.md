@@ -54,7 +54,7 @@ When you want to add new server configuration follow step below:
 |                chain1                |          2217           |   chain1    |      1      |                                         -                                         |
 |                chain2                |            -            |   chain2    |      -      |                              [rsa key](/keys/id_rsa)                              |
 |                chain3                |            -            |   chain3    |      -      |                             [rsa1 key](/keys/id_rsa1)                             |
-|             yubikey-pam             |          2221           |     sa      |      -      |                                         -                                         |
+|             yubikey-pam              |          2221           |     sa      |      -      |                                         -                                         |
 |      agent-forwarding-disabled       |          2222           |     sa      |      -      |                              [rsa key](/keys/id_rsa)                              |
 |            gateway-ports             |          2223           |     sa      |      -      |                              [rsa key](/keys/id_rsa)                              |
 |                 mosh                 | 2224, 60001-60010 (udp) |     sa      |      -      |                              [rsa key](/keys/id_rsa)                              |
@@ -71,7 +71,7 @@ When you want to add new server configuration follow step below:
 |             dropbear-key             |          2236           |     sa      |      -      |                              [rsa key](/keys/id_rsa)                              |
 |                putty                 |          2237           |     sa      |      -      | [putty key](/keys/putty_rsa)<br/>[encrypted putty key](/keys/putty_rsa_encrypted) |
 |               tinyssh                |          2238           |     sa      |      -      |                          [ed25519 key](/keys/id_ed25519)                          |
-
+|     keyboard-interactive-custom      |          2239           |     sa      |      -      |                                         -                                         |
 
 Passphrase for [`keys/id_rsa_encrypted`](/keys/id_rsa_encrypted) is `termius-test`.
 

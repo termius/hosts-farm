@@ -1,3 +1,4 @@
+# Copyright (c) 2022 Termius Corporation.
 FROM ubuntu:20.04 as builder
 
 RUN mkdir /app && apt-get update -y && apt-get upgrade -y && apt-get install -y gcc libpam0g-dev
@@ -21,7 +22,6 @@ ADD keyboard-interactive-pass/entrypoint.sh /usr/bin/entrypoint.sh
 ADD keyboard-interactive-pass/sshd_config /etc/ssh/sshd_config
 ADD keyboard-interactive-custom/pam_sshd /etc/pam.d/sshd
 COPY --from=builder /app/termius-pam.so /lib/security/termius-pam.so
-ADD keyboard-interactive-custom/termius-pam.py /usr/bin/termius-pam.py
 
 RUN chmod +x /usr/bin/entrypoint.sh
 CMD /usr/bin/entrypoint.sh

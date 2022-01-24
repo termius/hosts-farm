@@ -1,2 +1,2 @@
-auth required pam_python.so /usr/bin/termius-pam.py
-# auth required /lib/security/termius-pam.so
+# Copyright (c) 2020 Termius Corporation.
+auth required /lib/security/termius-pam.so
