@@ -3,6 +3,6 @@ HostbasedAuthentication no
 PasswordAuthentication no
 AllowGroups remote
 LogLevel DEBUG3
-SyslogFacility AUTH
+SyslogFacility AUTHPRIV
 UsePAM yes
 PrintLastLog no
