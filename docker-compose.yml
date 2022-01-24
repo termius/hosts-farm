@@ -1,3 +1,4 @@
+# Copyright (c) 2020 Termius Corporation.
 version: '2'
 
 services:
@@ -540,6 +541,17 @@ services:
     ports:
       - '2238:22'
 
+  keyboard-interactive-custom:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: keyboard-interactive-custom/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+    restart: "unless-stopped"
+    ports:
+      - '2239:22'
 
 networks:
   pf-case-keystorage:

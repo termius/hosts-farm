@@ -1,4 +1,5 @@
 #!/bin/bash
+# Copyright (c) 2020 Termius Corporation.
 
 create_user() {
     groupadd remote
@@ -27,6 +28,7 @@ add_credential $ADMIN $ADMIN_PASS
 
 touch /var/log/auth.log
 chmod 666 /var/log/auth.log
+syslog-ng -F &
 
 echo 'Start daemon'
 /usr/sbin/sshd -D
