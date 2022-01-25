@@ -62,7 +62,7 @@ When you want to add new server configuration follow step below:
 |      keyboard-interactive-pass       |          2226           |     sa      |    pass     |                                         -                                         |
 |            sftp-disabled             |          2227           |     sa      |      -      |                              [rsa key](/keys/id_rsa)                              |
 |             pf-disabled              |          2228           |     sa      |      -      |                              [rsa key](/keys/id_rsa)                              |
-|             pf-case-jump             |          2230           |     sa      |      -      |                              [rsa key](/keys/id_rsa)                              |
+|             pf-case-jump             |          2230           |     qa      |      -      |                              [rsa key](/keys/id_rsa)                              |
 |             client-cert              |          2231           |     sa      |      -      |                   [user certificate key](/client-cert/user-key)                   |
 |            mosh-unstable             | 2232, 60021-60030 (udp) |     sa      |      -      |                              [rsa key](/keys/id_rsa)                              |
 |              mosh-pass               | 2233, 60011-60020 (udp) |     sa      |    pass     |                                         -                                         |
