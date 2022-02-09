@@ -22,6 +22,7 @@ ADD keyboard-interactive-pass/entrypoint.sh /usr/bin/entrypoint.sh
 ADD keyboard-interactive-pass/sshd_config /etc/ssh/sshd_config
 ADD keyboard-interactive-custom/pam_sshd /etc/pam.d/sshd
 COPY --from=builder /app/termius-pam.so /lib/security/termius-pam.so
+ADD zshrc /tmp/
 
 RUN chmod +x /usr/bin/entrypoint.sh
 CMD /usr/bin/entrypoint.sh
