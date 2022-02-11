@@ -61,7 +61,9 @@ services:
 
   authykey:
     mem_limit: 64m
-    build: authykey
+    build:
+      context: .
+      dockerfile: authykey/Dockerfile
     environment:
       AUTHY_API_KEY: ${AUTHY_API_KEY}
       ADMIN_LIST: ${ADMIN_LIST}
@@ -72,7 +74,9 @@ services:
 
   authypass:
     mem_limit: 64m
-    build: authypass
+    build:
+      context: .
+      dockerfile: authypass/Dockerfile
     environment:
       AUTHY_API_KEY: ${AUTHY_API_KEY}
       ADMIN_LIST: ${ADMIN_LIST}
@@ -83,7 +87,9 @@ services:
 
   otp:
     mem_limit: 64m
-    build: otp
+    build:
+      context: .
+      dockerfile: otp/Dockerfile
     environment:
       ADMIN: sa
       ADMIN_PASS: 1
@@ -211,7 +217,9 @@ services:
 
   telnet:
     mem_limit: 64m
-    build: telnet
+    build:
+      context: .
+      dockerfile: telnet/Dockerfile
     environment:
       ADMIN: sa
       ADMIN_PASS: pass
@@ -304,7 +312,9 @@ services:
 
   yubikey-pam:
     mem_limit: 64m
-    build: yubikey-pam
+    build:
+      context: .
+      dockerfile: yubikey-pam/Dockerfile
     environment:
       ADMIN: sa
     restart: "unless-stopped"
@@ -440,7 +450,9 @@ services:
 
   client-cert:
     mem_limit: 64m
-    build: client-cert
+    build:
+      context: .
+      dockerfile: client-cert/Dockerfile
     environment:
       ADMIN: sa
       CONFIG: sshd_config

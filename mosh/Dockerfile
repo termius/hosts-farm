@@ -7,13 +7,15 @@ ENV LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y && apt-get upgrade -y && \
   apt-get install -y openssh-server gettext-base syslog-ng \
     tmux byobu emacs vim mc htop curl \
-    bb cmatrix libaa-bin
+    bb cmatrix libaa-bin \
+    zsh git
 
 RUN apt-get install -y mosh iproute2
 
 ADD mosh/entrypoint.sh /usr/bin/entrypoint.sh
 ADD mosh/sshd_config /etc/ssh/sshd_config
 ADD keys /tmp/
+ADD zshrc /tmp/
 
 RUN chmod +x /usr/bin/entrypoint.sh
 ADD sanitize-auth-log.sh /usr/bin/sanitize-auth-log.sh
