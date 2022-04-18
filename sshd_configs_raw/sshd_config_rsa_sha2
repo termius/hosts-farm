@@ -7,4 +7,5 @@ LogLevel DEBUG3
 SyslogFacility AUTHPRIV
 PubkeyAcceptedKeyTypes rsa-sha2-512,rsa-sha2-256
 # openssh8.5 renamed the PubkeyAcceptedKeyTypes keyword to PubkeyAcceptedAlgorithms
+Subsystem       sftp    /usr/lib/openssh/sftp-server
 PrintLastLog no
