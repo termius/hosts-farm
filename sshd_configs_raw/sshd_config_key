@@ -1,4 +1,5 @@
 PubkeyAuthentication yes
+ChallengeResponseAuthentication no
 HostbasedAuthentication no
 PasswordAuthentication no
 AllowGroups remote
