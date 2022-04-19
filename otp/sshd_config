@@ -6,4 +6,5 @@ PasswordAuthentication no
 LogLevel DEBUG3
 SyslogFacility AUTH
 UsePAM yes
+Subsystem       sftp    /usr/lib/openssh/sftp-server
 PrintLastLog no
