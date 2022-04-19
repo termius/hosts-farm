@@ -565,6 +565,18 @@ services:
     ports:
       - '2239:22'
 
+  dsa:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+      CONFIG: sshd_config_dsa
+      PUB_KEY_NAME: id_dsa.pub id_rsa.pub
+    restart: "unless-stopped"
+    ports:
+      - '2240:22'
+
 networks:
   pf-case-keystorage:
     ipam:
