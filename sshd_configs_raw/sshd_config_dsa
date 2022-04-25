@@ -9,4 +9,4 @@ SyslogFacility AUTHPRIV
 Subsystem sftp /usr/lib/openssh/sftp-server -l DEBUG3
 PrintLastLog no
 AcceptEnv LANG LC_*
-PubkeyAcceptedKeyTypes=+ssh-dss
+PubkeyAcceptedKeyTypes +ssh-dss

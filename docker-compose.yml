@@ -572,7 +572,7 @@ services:
       ADMIN: sa
       ADMIN_PASS: pass
       CONFIG: sshd_config_dsa
-      PUB_KEY_NAME: id_dsa.pub id_rsa.pub
+      PUB_KEY_NAME: id_dsa_legacy.pub id_dsa.pub id_rsa.pub
     restart: "unless-stopped"
     ports:
       - '2240:22'
