@@ -5,3 +5,5 @@ PasswordAuthentication no
 AllowGroups remote
 LogLevel DEBUG3
 PrintLastLog no
+Subsystem sftp /usr/lib/openssh/sftp-server -l DEBUG3
+AcceptEnv LANG LC_*
