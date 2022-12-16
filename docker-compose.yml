@@ -577,6 +577,34 @@ services:
     ports:
       - '2240:22'
 
+  dropbear-ed25519:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: dropbear/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+      PUB_KEY_NAME: id_rsa.pub
+      DROPBEAR_KEY_FILE: /etc/dropbear/dropbear_ed25519_host_key
+    restart: "unless-stopped"
+    ports:
+      - '2242:22'
+
+  dropbear-ecdsa:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: dropbear/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+      PUB_KEY_NAME: id_rsa.pub
+      DROPBEAR_KEY_FILE: /etc/dropbear/dropbear_ecdsa_host_key
+    restart: "unless-stopped"
+    ports:
+      - '2243:22'
+
 networks:
   pf-case-keystorage:
     ipam:
