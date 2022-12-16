@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 RUN apt-get update && apt-get install locales && \
   locale-gen en_US.UTF-8 && update-locale LC_ALL="en_US.UTF-8"
@@ -18,4 +18,4 @@ ADD zshrc /tmp/
 
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
-CMD dropbear -w -s -G remote -F
+CMD dropbear -w -s -G remote -F -r ${DROPBEAR_KEY_FILE:-/etc/dropbear/dropbear_rsa_host_key}
