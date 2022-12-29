@@ -642,6 +642,19 @@ services:
     ports:
       - '2246:22'
 
+  anomaly-exec:
+    mem_limit: 64m
+    build: 
+      context: .
+      dockerfile: anomaly-exec/Dockerfile
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_key
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+    restart: "unless-stopped"
+    ports:
+      - '2247:22'
+
 networks:
   pf-case-keystorage:
     ipam:

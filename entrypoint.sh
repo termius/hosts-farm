@@ -8,6 +8,7 @@ create_user() {
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$1/powerlevel10k
     echo "source ~/powerlevel10k/powerlevel10k.zsh-theme" >>/home/$1/.zshrc
     echo "source /tmp/zshrc" >>/home/$1/.zshrc
+    (cat /tmp/bashrc > /home/$1/.bashrc)
 }
 
 add_credential() {
