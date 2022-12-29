@@ -618,6 +618,30 @@ services:
     ports:
       - '2243:22'
 
+  channels-limit-1:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_key_limit_channels
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+      MAX_SESSIONS: 1
+    restart: "unless-stopped"
+    ports:
+      - '2244:22'
+
+  channels-limit-2:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_key_limit_channels
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+      MAX_SESSIONS: 2
+    restart: "unless-stopped"
+    ports:
+      - '2246:22'
+
 networks:
   pf-case-keystorage:
     ipam:
