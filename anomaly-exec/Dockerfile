@@ -21,6 +21,8 @@ RUN chmod +x /usr/bin/sanitize-auth-log.sh
 ADD anomaly-exec/bashrc /tmp/
 
 ADD zshrc /tmp/
+ARG SSH_SERVER_NAME=OpenSSH
+RUN sed -i'' "s/OpenSSH_8.2p1/${SSH_SERVER_NAME}_8.2p1/g" /usr/sbin/sshd
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD /usr/sbin/sshd -D

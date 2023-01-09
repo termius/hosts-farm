@@ -567,7 +567,7 @@ services:
 
   raspbian:
     mem_limit: 64m
-    build: 
+    build:
       context: .
       dockerfile: raspbian/Dockerfile
     environment:
@@ -642,9 +642,9 @@ services:
     ports:
       - '2246:22'
 
-  anomaly-exec:
+  anomaly-exec-openssh:
     mem_limit: 64m
-    build: 
+    build:
       context: .
       dockerfile: anomaly-exec/Dockerfile
     environment:
@@ -653,7 +653,22 @@ services:
       PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
     restart: "unless-stopped"
     ports:
-      - '2247:22'
+      - '2250:22'
+
+  anomaly-exec-custom:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: anomaly-exec/Dockerfile
+      args:
+        SSH_SERVER_NAME: Termius
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_key
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+    restart: "unless-stopped"
+    ports:
+      - '2251:22'
 
 networks:
   pf-case-keystorage:
