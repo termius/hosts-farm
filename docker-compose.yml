@@ -26,6 +26,19 @@ services:
     ports:
       - '2202:22'
 
+  key-rsa:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: key-rsa/Dockerfile
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_key
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+    restart: "unless-stopped"
+    ports:
+      - '3302:22'
+
   http-proxy:
     mem_limit: 512m
     build: http-proxy
