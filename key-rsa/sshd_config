@@ -1,8 +1,0 @@
-PubkeyAuthentication yes
-HostbasedAuthentication no
-PasswordAuthentication no
-AllowGroups remote
-LogLevel DEBUG3
-PrintLastLog no
-Subsystem       sftp    /usr/lib/openssh/sftp-server
-AcceptEnv LANG LC_*

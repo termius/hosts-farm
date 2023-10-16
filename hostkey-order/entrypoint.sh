@@ -12,12 +12,10 @@ create_user() {
 }
 
 add_credential() {
-    passwd -d $1
     mkdir -p /home/$1/.ssh/
-    (cd /tmp && cat $PUB_KEY_NAME > /home/$1/.ssh/authorized_keys)
-    chmod 700 /home/$1/.ssh
-    chmod 600 /home/$1/.ssh/authorized_keys
-    chown -R $1:remote /home/$1/.ssh/
+    echo "$ADMIN:$ADMIN_PASS" | chpasswd
+    cp /tmp/bash_logout /home/$1/.bash_logout
+    chown -R $1:remote /home/$1/.bash_logout
 
     if [ -n "${PRIVATE_KEY_NAME}" ]; then
         PUB_KEY="$PRIVATE_KEY_NAME.pub"
@@ -35,7 +33,7 @@ envsubst < /tmp/$CONFIG > "/etc/ssh/sshd_config"
 mkdir /var/run/sshd
 
 create_user $ADMIN
-add_credential $ADMIN
+add_credential $ADMIN $ADMIN_PASS
 
 touch /var/log/auth.log
 chmod 666 /var/log/auth.log
@@ -45,11 +43,13 @@ chmod 666 /var/log/auth.log
 
 rm /etc/ssh/ssh_host_*
 
-#ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
-#ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key
-
-cp /tmp/ssh_host_rsa_key /etc/ssh/
-#cp /tmp/ssh_host_ed25519_key /etc/ssh/
+if [ -n "${HOST_KEY_NAME}" ]; then
+  # shellcheck disable=SC2066
+  for KEY in ${HOST_KEY_NAME}
+  do
+    cp "/tmp/${KEY}" /etc/ssh/
+  done
+fi
 
 echo 'Start daemon'
 echo "$@"

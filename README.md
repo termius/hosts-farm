@@ -72,6 +72,9 @@ When you want to add new server configuration follow step below:
 |                putty                 |          2237           |     sa      |      -      | [putty key](/keys/putty_rsa)<br/>[encrypted putty key](/keys/putty_rsa_encrypted) |
 |               tinyssh                |          2238           |     sa      |      -      |                          [ed25519 key](/keys/id_ed25519)                          |
 |     keyboard-interactive-custom      |          2239           |     sa      |      -      |                                         -                                         |
+|             hostkey-rsa              |          2255           |     sa      |    pass     |                                         -                                         |
+|           hostkey-ed25519            |          2256           |     sa      |    pass     |                                         -                                         |
+|            hostkey-multi             |          2257           |     sa      |    pass     |                                         -                                         |
 
 Passphrase for [`keys/id_rsa_encrypted`](/keys/id_rsa_encrypted) is `termius-test`.
 
