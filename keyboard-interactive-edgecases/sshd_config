@@ -1,0 +1,9 @@
+PubkeyAuthentication yes
+HostbasedAuthentication no
+PasswordAuthentication no
+AllowGroups remote
+LogLevel DEBUG3
+SyslogFacility AUTHPRIV
+${PAM_CONFIG}
+${MAX_AUTH_TRIES}
+PrintLastLog no

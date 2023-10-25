@@ -642,6 +642,48 @@ services:
     ports:
       - '2246:22'
 
+  key-and-valid-keyboard:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: keyboard-interactive-edgecases/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+      PAM_CONFIG: 'UsePAM yes'
+    restart: "unless-stopped"
+    ports:
+      - '2247:22'
+
+  key-and-invalid-keyboard:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: keyboard-interactive-edgecases/Dockerfile
+    environment:
+      ADMIN: sa
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+      PAM_CONFIG: 'UsePAM no'
+    restart: "unless-stopped"
+    ports:
+      - '2248:22'
+
+  key-and-valid-keyboard-single-attempt:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: keyboard-interactive-edgecases/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+      PAM_CONFIG: UsePAM yes
+      MAX_AUTH_TRIES: MaxAuthTries 1
+    restart: "unless-stopped"
+    ports:
+      - '2249:22'
+
   anomaly-exec-openssh:
     mem_limit: 64m
     build:
