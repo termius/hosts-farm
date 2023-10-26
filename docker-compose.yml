@@ -712,6 +712,48 @@ services:
     ports:
       - '2251:22'
 
+  hostkey-rsa:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: hostkey-order/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+      CONFIG: pass/sshd_config
+      HOST_KEY_NAME: ssh_host_rsa_key
+    restart: "unless-stopped"
+    ports:
+      - '2255:22'
+
+  hostkey-ed25519:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: hostkey-order/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+      CONFIG: pass/sshd_config
+      HOST_KEY_NAME: ssh_host_ed25519_key
+    restart: "unless-stopped"
+    ports:
+      - '2256:22'
+
+  hostkey-multi:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: hostkey-order/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+      CONFIG: pass/sshd_config
+      HOST_KEY_NAME: ssh_host_rsa_key ssh_host_ed25519_key
+    restart: "unless-stopped"
+    ports:
+      - '2257:22'
+
 networks:
   pf-case-keystorage:
     ipam:
