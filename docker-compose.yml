@@ -590,6 +590,17 @@ services:
     ports:
       - '2240:22'
 
+  rsa-pkcs8:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_rsa_pkcs8.pub id_rsa_pkcs8_encrypted.pub
+    restart: "unless-stopped"
+    ports:
+      - '2241:22'
+
   dropbear-ed25519:
     mem_limit: 64m
     build:
