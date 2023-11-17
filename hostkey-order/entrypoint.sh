@@ -48,6 +48,7 @@ if [ -n "${HOST_KEY_NAME}" ]; then
   for KEY in ${HOST_KEY_NAME}
   do
     cp "/tmp/${KEY}" /etc/ssh/
+    chmod 600 "/etc/ssh/${KEY}"
   done
 fi
 
