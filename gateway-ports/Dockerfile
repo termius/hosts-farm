@@ -12,7 +12,7 @@ RUN apt-get update -y && apt-get upgrade -y && \
 
 RUN apt-get install -y python3
 
-ADD gateway-ports/http.py /opt/http/http.py
+ADD gateway-ports/run_http.py /opt/http/run_http.py
 ADD gateway-ports/entrypoint.sh /usr/bin/entrypoint.sh
 ADD gateway-ports/sshd_config /etc/ssh/sshd_config
 ADD keys /tmp/
