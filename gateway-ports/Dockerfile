@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 RUN apt-get update -y && apt-get install -y locales && \
   locale-gen en_US.UTF-8 && update-locale LC_ALL="en_US.UTF-8"
@@ -10,7 +10,7 @@ RUN apt-get update -y && apt-get upgrade -y && \
     bb cmatrix libaa-bin \
     zsh git
 
-RUN apt-get install -y python
+RUN apt-get install -y python3
 
 ADD gateway-ports/http.py /opt/http/http.py
 ADD gateway-ports/entrypoint.sh /usr/bin/entrypoint.sh
