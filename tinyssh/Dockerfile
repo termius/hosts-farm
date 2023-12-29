@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 RUN apt-get update && apt-get install locales && \
   locale-gen en_US.UTF-8 && update-locale LC_ALL="en_US.UTF-8"

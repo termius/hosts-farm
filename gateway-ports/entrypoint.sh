@@ -37,7 +37,7 @@ touch /var/log/auth.log
 chmod 666 /var/log/auth.log
 
 echo 'Start dummy HTTP server'
-python /opt/http/http.py &
+python3 /opt/http/run_http.py &
 
 echo 'Start daemon'
 /usr/sbin/sshd -D
