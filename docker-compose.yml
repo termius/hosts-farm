@@ -47,7 +47,7 @@ services:
       - key
 
   http-proxy-authenticated:
-    mem_limit: 512m
+    mem_limit: 712m
     build:
       context: http-proxy
       args:
