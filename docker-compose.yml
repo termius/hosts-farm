@@ -90,12 +90,27 @@ services:
     build:
       context: .
       dockerfile: otp/Dockerfile
+      args:
+        PAM_CONFIG: otp/otp.pam_sshd
     environment:
       ADMIN: sa
-      ADMIN_PASS: 1
     restart: "unless-stopped"
     ports:
       - '2205:22'
+
+  pass_otp:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: otp/Dockerfile
+      args:
+        PAM_CONFIG: otp/pass_otp.pam_sshd
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+    restart: "unless-stopped"
+    ports:
+      - '2258:22'
 
   ed25519:
     mem_limit: 64m

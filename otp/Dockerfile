@@ -12,9 +12,10 @@ RUN apt-get update -y && apt-get upgrade -y && \
 
 RUN apt-get install -y otpw-bin libpam-otpw
 
+ARG PAM_CONFIG="otp/otp.pam_sshd"
 ADD otp/entrypoint.sh /usr/bin/entrypoint.sh
 ADD otp/sshd_config /etc/ssh/sshd_config
-ADD otp/pam_sshd /etc/pam.d/sshd
+ADD ${PAM_CONFIG} /etc/pam.d/sshd
 ADD otp/otpw /tmp/otpw
 ADD zshrc /tmp/
 

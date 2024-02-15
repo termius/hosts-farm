@@ -75,6 +75,7 @@ When you want to add new server configuration follow step below:
 |             hostkey-rsa              |          2255           |     sa      |    pass     |                                         -                                         |
 |           hostkey-ed25519            |          2256           |     sa      |    pass     |                                         -                                         |
 |            hostkey-multi             |          2257           |     sa      |    pass     |                                         -                                         |
+|               pass-otp               |          2258           |     sa      |    pass     |                               [keys](/otp/keys.txt)                               |
 
 Passphrase for [`keys/id_rsa_encrypted`](/keys/id_rsa_encrypted) is `termius-test`.
 
