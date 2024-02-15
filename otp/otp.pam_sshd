@@ -11,6 +11,6 @@ session    required     pam_limits.so
 session    required     pam_env.so # [1]
 session    required     pam_env.so user_readenv=1 envfile=/etc/default/locale
 session [success=ok ignore=ignore module_unknown=ignore default=bad]        pam_selinux.so open
-@include common-password
-auth    required    pam_otpw.so
-session optional    pam_otpw.so
+
+auth       required   pam_otpw.so
+session    optional   pam_otpw.so

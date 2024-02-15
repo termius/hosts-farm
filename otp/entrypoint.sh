@@ -13,6 +13,10 @@ add_credential() {
     mv /tmp/otpw /home/$1/.otpw
     chown $1: /home/$1/.otpw
     chmod 600 /home/$1/.otpw
+
+    if [[ (-n "$1") || (-n "$2") ]]; then
+        echo "$1:$2" | chpasswd
+    fi
 }
 
 mkdir /var/run/sshd
@@ -22,6 +26,7 @@ add_credential $ADMIN $ADMIN_PASS
 
 touch /var/log/auth.log
 chmod 666 /var/log/auth.log
+/usr/sbin/syslog-ng -F &
 
 echo 'Start daemon'
 /usr/sbin/sshd -D

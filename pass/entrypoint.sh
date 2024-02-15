@@ -11,7 +11,7 @@ create_user() {
 
 add_credential() {
     mkdir -p /home/$1/.ssh/
-    echo "$ADMIN:$ADMIN_PASS" | chpasswd
+    echo "$1:$2" | chpasswd
     cp /tmp/bash_logout /home/$1/.bash_logout
     chown -R $1:remote /home/$1/.bash_logout
 
