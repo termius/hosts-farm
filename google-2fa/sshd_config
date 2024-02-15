@@ -1,0 +1,11 @@
+PubkeyAuthentication yes
+HostbasedAuthentication no
+PermitEmptyPasswords no
+ChallengeResponseAuthentication yes
+PasswordAuthentication yes
+UsePrivilegeSeparation yes
+LogLevel DEBUG3
+SyslogFacility AUTH
+UsePAM yes
+Subsystem       sftp    /usr/lib/openssh/sftp-server
+PrintLastLog no

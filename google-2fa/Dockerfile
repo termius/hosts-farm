@@ -1,0 +1,23 @@
+FROM ubuntu:22.04
+
+RUN apt-get update -y && apt-get install -y locales && \
+  locale-gen en_US.UTF-8 && update-locale LC_ALL="en_US.UTF-8"
+ENV LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update -y && apt-get upgrade -y && \
+  apt-get install -y openssh-server gettext-base syslog-ng \
+    vttest tmux byobu emacs vim mc htop curl nano \
+    bb cmatrix libaa-bin \
+    zsh git
+
+RUN apt-get install -y libpam-google-authenticator
+
+ADD google-2fa/entrypoint.sh /usr/bin/entrypoint.sh
+ADD google-2fa/google_authenticator /tmp/google_authenticator
+ADD google-2fa/pam_sshd /etc/pam.d/sshd
+ADD google-2fa/sshd_config /etc/ssh/sshd_config
+ADD zshrc /tmp/
+ADD keys /tmp/
+
+RUN chmod +x /usr/bin/entrypoint.sh
+CMD /usr/bin/entrypoint.sh
