@@ -732,6 +732,7 @@ services:
         SSH_SERVER_NAME: Termius
     environment:
       ADMIN: sa
+      ADMIN_PASS: pass
       CONFIG: sshd_config_key
       PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
     restart: "unless-stopped"
