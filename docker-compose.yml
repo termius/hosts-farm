@@ -780,6 +780,35 @@ services:
     ports:
       - '2257:22'
 
+  key-ssh-8.2:
+    mem_limit: 64m
+    build:
+      context: .
+      args:
+        UBUNTU_VERSION: 20.04
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_key
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+    restart: "unless-stopped"
+    ports:
+      - '2259:22'
+
+  key-ssh-7.6:
+    mem_limit: 64m
+    build:
+      context: .
+      args:
+        UBUNTU_VERSION: 18.04
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_key
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+    restart: "unless-stopped"
+    ports:
+      - '2260:22'
+
+
 networks:
   pf-case-keystorage:
     ipam:
