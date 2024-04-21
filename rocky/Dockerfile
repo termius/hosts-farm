@@ -11,10 +11,10 @@ RUN dnf install -y openssh-server
 RUN dnf install -y git
 RUN dnf install -y pass
 
-ADD sshd_configs_raw /tmp/
+ADD rocky/sshd_config /tmp/
 ADD keys /tmp/
 
-ADD entrypoint_rocky.sh /usr/bin/entrypoint.sh
+ADD rocky/entrypoint.sh /usr/bin/entrypoint.sh
 RUN chmod +x /usr/bin/entrypoint.sh
 
 ADD zshrc /tmp/

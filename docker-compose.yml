@@ -822,8 +822,6 @@ services:
       ADMIN: sa
       ADMIN_PASS: pass
       PUB_KEY_NAME: id_rsa.pub
-      CONFIG: sshd_config_rocky
-      HOST_KEY_NAME: ssh_host_rsa_key
     restart: "unless-stopped"
     ports:
       - '2292:22'

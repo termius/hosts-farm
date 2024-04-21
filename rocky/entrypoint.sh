@@ -30,7 +30,7 @@ add_credential() {
     fi
 }
 
-cat /tmp/$CONFIG > "/etc/ssh/sshd_config"
+cat /tmp/sshd_config > "/etc/ssh/sshd_config"
 
 create_user $ADMIN
 add_credential $ADMIN $ADMIN_PASS
