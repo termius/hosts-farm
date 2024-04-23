@@ -813,6 +813,19 @@ services:
     ports:
       - '2260:22'
 
+  rocky:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: rocky/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+      PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
+    ports:
+      - '2292:22'
+
   # Protocols:
 
   telnet:

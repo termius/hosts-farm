@@ -1,0 +1,27 @@
+LogLevel DEBUG3
+PrintLastLog no
+AcceptEnv LANG LC_*
+
+AuthenticationMethods publickey,password publickey,keyboard-interactive
+ChallengeResponseAuthentication no
+Ciphers aes128-ctr,aes192-ctr,aes256-ctr
+ClientAliveCountMax 0
+ClientAliveInterval 900
+GSSAPIAuthentication no
+HostKey /etc/ssh/ssh_host_rsa_key
+HostbasedAuthentication no
+IgnoreRhosts yes
+KexAlgorithms -diffie-hellman-group1-sha1,diffie-hellman-group-exchange-sha1
+LoginGraceTime 30
+MACs hmac-sha1
+PermitEmptyPasswords no
+PermitRootLogin no
+PermitUserEnvironment no
+PrintMotd no
+Protocol 2
+StrictModes yes
+Subsystem sftp /usr/libexec/openssh/sftp-server
+UseDNS no
+UsePAM yes
+UsePrivilegeSeparation yes
+X11Forwarding no
