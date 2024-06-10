@@ -12,7 +12,7 @@ int pam_sm_authenticate(pam_handle_t *pamh, int flags, int argc,
        "interactive\nprompts that\neven use links: https://termius.com\nand "
        "https://termius.com/teams\n"},
       {PAM_PROMPT_ECHO_ON, "Enter username: "},
-      {PAM_PROMPT_ECHO_OFF, "Enter passphare: "},
+      {PAM_PROMPT_ECHO_OFF, "Enter passphrase: "},
       {PAM_PROMPT_ECHO_ON, "Enter your name: "},
   };
   const struct pam_message *message_vector[4];

@@ -785,6 +785,20 @@ services:
     ports:
       - '2238:22'
 
+  key-ssh-9.6:
+    mem_limit: 64m
+    build:
+      context: .
+      args:
+        UBUNTU_VERSION: 24.04
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_key
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+    restart: "unless-stopped"
+    ports:
+      - '2293:22'
+
   key-ssh-8.2:
     mem_limit: 64m
     build:
