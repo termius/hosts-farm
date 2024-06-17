@@ -827,6 +827,36 @@ services:
     ports:
       - '2260:22'
 
+  key-ssh-5.9:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: ubuntu-old/Dockerfile
+      args:
+        UBUNTU_VERSION: "12.04"
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_key
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+    restart: "unless-stopped"
+    ports:
+      - '2294:22'
+
+  key-ssh-6.2:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: ubuntu-old/Dockerfile
+      args:
+        UBUNTU_VERSION: "13.10"
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_key
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+    restart: "unless-stopped"
+    ports:
+      - '2295:22'
+
   rocky:
     mem_limit: 64m
     build:
