@@ -17,6 +17,7 @@ ADD pass/bash_logout /tmp/bash_logout
 ADD pass/sshd_config pass/sshd_config_export_key /tmp/
 ADD keys /tmp/
 ADD zshrc /tmp/
+ADD pass/bash_history /tmp/
 
 RUN chmod +x /usr/bin/entrypoint.sh
 CMD /usr/bin/entrypoint.sh

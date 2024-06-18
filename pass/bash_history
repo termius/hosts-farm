@@ -1,0 +1,26 @@
+exit
+htop
+ls -a
+cat server-logs-13Jun.txt | grep "value1"
+vi serverconfigsudo apt-get
+cat server-logs-20Feb.txt | grep "value1"
+watch -n 1 df -h
+df -h /dev/sda1
+ssh sa@hostfarm
+find /path/to/search -name "pattern"
+pkill -f ssh
+npm update -g
+sudo apt update && sudo apt upgrade
+cat server-logs-15Mar.txt | grep "value1"
+vi serverconfig
+htop
+df -h /dev/sda1
+sudo systemctl restart ssh
+cat server-logs-08Apr.txt | grep "value1"
+vi serverconfig
+sudo systemctl restart ssh
+cat server-logs-15Mar.txt | grep "value1"
+npm update -g
+ls -a
+exit
+vi serverconfig
