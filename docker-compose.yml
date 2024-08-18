@@ -1220,6 +1220,19 @@ services:
     ports:
       - '2251:22'
 
+  chacha-poly-with-hmac:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      CIPHER: chacha20-poly1305@openssh.com
+      MAC: hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+      CONFIG: sshd_config_ciphers_macs
+      PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
+    ports:
+      - '2294:22'
+
 networks:
   pf-case-keystorage:
     ipam:
@@ -1230,4 +1243,3 @@ networks:
     ipam:
       config:
       - subnet: 172.25.2.0/24
-
