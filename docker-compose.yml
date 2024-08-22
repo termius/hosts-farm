@@ -574,7 +574,7 @@ services:
     build: .
     environment:
       ADMIN: sa
-      KEX: diffie-hellman-group16-sha512
+      KEX: diffie-hellman-group14-sha256,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1,diffie-hellman-group16-sha512
       CONFIG: sshd_config_kex
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
@@ -605,6 +605,29 @@ services:
     ports:
       - '2288:22'
 
+  diffie-hellman-test-1:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      KEX: diffie-hellman-group1-sha1,diffie-hellman-group16-sha512
+      CONFIG: sshd_config_kex
+      PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
+    ports:
+      - '2298:22'
+
+  diffie-hellman-test-2:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      KEX: diffie-hellman-group16-sha512,diffie-hellman-group1-sha1
+      CONFIG: sshd_config_kex
+      PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
+    ports:
+      - '2299:22'
   # Interactive authentication:
 
   multiple-auths:
