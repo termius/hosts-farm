@@ -8,7 +8,7 @@ RUN apt-get update -y && apt-get upgrade -y && \
   apt-get install -y openssh-server gettext-base syslog-ng \
     vttest tmux byobu emacs vim mc htop curl nano \
     bb cmatrix libaa-bin \
-    zsh git cowsay lolcat
+    zsh git cowsay lolcat screen
 
 RUN apt-get install -y pass
 
