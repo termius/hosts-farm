@@ -1,8 +1,7 @@
 # Copyright (c) 2020 Termius Corporation.
-version: '2'
+version: "2"
 
 services:
-
   # Pass:
 
   pass:
@@ -16,7 +15,7 @@ services:
       CONFIG: sshd_config
     restart: "unless-stopped"
     ports:
-      - '2201:22'
+      - "2201:22"
 
   # Key types:
 
@@ -29,7 +28,31 @@ services:
       PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
     restart: "unless-stopped"
     ports:
-      - '2202:22'
+      - "2202:22"
+
+  key-auth-tries-1:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_key
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+      MAX_AUTH_TRIES: MaxAuthTries 1
+    restart: "unless-stopped"
+    ports:
+      - "22021:22"
+
+  key-auth-tries-2:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_key
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+      MAX_AUTH_TRIES: MaxAuthTries 2
+    restart: "unless-stopped"
+    ports:
+      - "22022:22"
 
   ed25519:
     mem_limit: 64m
@@ -40,7 +63,7 @@ services:
       PUB_KEY_NAME: id_ed25519.pub
     restart: "unless-stopped"
     ports:
-      - '2206:22'
+      - "2206:22"
 
   ecdsa-nistp256:
     mem_limit: 64m
@@ -51,7 +74,7 @@ services:
       PUB_KEY_NAME: id_ecdsa_nistp256.pub id_ecdsa_nistp256_openssh.pub
     restart: "unless-stopped"
     ports:
-      - '2207:22'
+      - "2207:22"
 
   ecdsa-nistp384:
     mem_limit: 64m
@@ -62,7 +85,7 @@ services:
       PUB_KEY_NAME: id_ecdsa_nistp384.pub
     restart: "unless-stopped"
     ports:
-      - '2218:22'
+      - "2218:22"
 
   ecdsa-nistp521:
     mem_limit: 64m
@@ -73,7 +96,7 @@ services:
       PUB_KEY_NAME: id_ecdsa_nistp521.pub
     restart: "unless-stopped"
     ports:
-      - '2219:22'
+      - "2219:22"
 
   putty:
     mem_limit: 64m
@@ -84,7 +107,7 @@ services:
       PUB_KEY_NAME: putty_rsa.pub putty_rsa_encrypted.pub putty3_rsa_encrypted.pub
     restart: "unless-stopped"
     ports:
-      - '2237:22'
+      - "2237:22"
 
   dsa:
     mem_limit: 64m
@@ -95,7 +118,7 @@ services:
       PUB_KEY_NAME: id_dsa_legacy.pub id_dsa.pub
     restart: "unless-stopped"
     ports:
-      - '2240:22'
+      - "2240:22"
 
   rsa-pkcs8:
     mem_limit: 64m
@@ -106,7 +129,7 @@ services:
       PUB_KEY_NAME: id_rsa_pkcs8.pub id_rsa_pkcs8_encrypted.pub
     restart: "unless-stopped"
     ports:
-      - '2241:22'
+      - "2241:22"
 
   disabled-rsa-sha:
     mem_limit: 64m
@@ -118,7 +141,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2235:22'
+      - "2235:22"
 
   rsa-sha2-256:
     mem_limit: 64m
@@ -129,7 +152,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2289:22'
+      - "2289:22"
 
   rsa-sha2-512:
     mem_limit: 64m
@@ -140,7 +163,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2290:22'
+      - "2290:22"
 
   client-cert:
     mem_limit: 64m
@@ -152,7 +175,7 @@ services:
       CONFIG: sshd_config
     restart: "unless-stopped"
     ports:
-      - '2231:22'
+      - "2231:22"
 
   client-cert-sha1:
     mem_limit: 64m
@@ -164,7 +187,7 @@ services:
       CONFIG: sshd_config
     restart: "unless-stopped"
     ports:
-      - '2291:22'
+      - "2291:22"
 
   # Ciphers:
 
@@ -178,7 +201,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2210:22'
+      - "2210:22"
 
   aes128-ctr:
     mem_limit: 64m
@@ -190,7 +213,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2211:22'
+      - "2211:22"
 
   aes192-ctr:
     mem_limit: 64m
@@ -202,7 +225,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2212:22'
+      - "2212:22"
 
   aes256-ctr:
     mem_limit: 64m
@@ -214,7 +237,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2213:22'
+      - "2213:22"
 
   aes128-gcm:
     mem_limit: 64m
@@ -226,7 +249,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2275:22'
+      - "2275:22"
 
   aes256-gcm:
     mem_limit: 64m
@@ -238,7 +261,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2276:22'
+      - "2276:22"
 
   aes128-cbc:
     mem_limit: 64m
@@ -250,7 +273,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2277:22'
+      - "2277:22"
 
   aes192-cbc:
     mem_limit: 64m
@@ -262,7 +285,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2278:22'
+      - "2278:22"
 
   aes256-cbc:
     mem_limit: 64m
@@ -274,8 +297,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2279:22'
-
+      - "2279:22"
 
   # MAC:
 
@@ -289,7 +311,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2208:22'
+      - "2208:22"
 
   hmac-sha2-512:
     mem_limit: 64m
@@ -301,7 +323,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2209:22'
+      - "2209:22"
 
   hmac-sha1:
     mem_limit: 64m
@@ -313,7 +335,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2261:22'
+      - "2261:22"
 
   hmac-sha1-etm:
     mem_limit: 64m
@@ -325,7 +347,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2262:22'
+      - "2262:22"
 
   hmac-sha2-256-etm:
     mem_limit: 64m
@@ -337,7 +359,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2263:22'
+      - "2263:22"
 
   hmac-sha2-512-etm:
     mem_limit: 64m
@@ -349,7 +371,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2264:22'
+      - "2264:22"
 
   hmac-sha1-96:
     mem_limit: 64m
@@ -361,7 +383,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2265:22'
+      - "2265:22"
 
   hmac-sha1-96-etm:
     mem_limit: 64m
@@ -373,7 +395,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2266:22'
+      - "2266:22"
 
   hmac-md5:
     mem_limit: 64m
@@ -385,7 +407,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2267:22'
+      - "2267:22"
 
   hmac-md5-etm:
     mem_limit: 64m
@@ -397,7 +419,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2268:22'
+      - "2268:22"
 
   hmac-md5-96:
     mem_limit: 64m
@@ -409,7 +431,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2269:22'
+      - "2269:22"
 
   hmac-md5-96-etm:
     mem_limit: 64m
@@ -421,7 +443,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2270:22'
+      - "2270:22"
 
   umac-64:
     mem_limit: 64m
@@ -433,7 +455,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2271:22'
+      - "2271:22"
 
   umac-64-etm:
     mem_limit: 64m
@@ -445,7 +467,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2272:22'
+      - "2272:22"
 
   umac-128:
     mem_limit: 64m
@@ -457,7 +479,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2273:22'
+      - "2273:22"
 
   umac-128-etm:
     mem_limit: 64m
@@ -469,7 +491,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2274:22'
+      - "2274:22"
 
   # KEX:
 
@@ -483,7 +505,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2214:22'
+      - "2214:22"
 
   diffie-hellman-group-exchange-sha256:
     mem_limit: 64m
@@ -495,7 +517,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2215:22'
+      - "2215:22"
 
   ecdh-sha2-nistp256:
     mem_limit: 64m
@@ -507,7 +529,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2280:22'
+      - "2280:22"
 
   ecdh-sha2-nistp384:
     mem_limit: 64m
@@ -519,7 +541,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2281:22'
+      - "2281:22"
 
   ecdh-sha2-nistp521:
     mem_limit: 64m
@@ -531,7 +553,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2282:22'
+      - "2282:22"
 
   diffie-hellman-group1-sha1:
     mem_limit: 64m
@@ -543,7 +565,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2283:22'
+      - "2283:22"
 
   diffie-hellman-group14-sha1:
     mem_limit: 64m
@@ -555,7 +577,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2284:22'
+      - "2284:22"
 
   diffie-hellman-group14-sha256:
     mem_limit: 64m
@@ -567,7 +589,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2285:22'
+      - "2285:22"
 
   diffie-hellman-group16-sha512:
     mem_limit: 64m
@@ -579,7 +601,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2286:22'
+      - "2286:22"
 
   diffie-hellman-group18-sha512:
     mem_limit: 64m
@@ -591,7 +613,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2287:22'
+      - "2287:22"
 
   diffie-hellman-group-exchange-sha1:
     mem_limit: 64m
@@ -603,7 +625,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2288:22'
+      - "2288:22"
 
   # Interactive authentication:
 
@@ -618,7 +640,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2225:22'
+      - "2225:22"
 
   keyboard-interactive-pass:
     mem_limit: 64m
@@ -630,7 +652,7 @@ services:
       ADMIN_PASS: pass
     restart: "unless-stopped"
     ports:
-      - '2226:22'
+      - "2226:22"
 
   key-and-valid-keyboard:
     mem_limit: 64m
@@ -641,10 +663,10 @@ services:
       ADMIN: sa
       ADMIN_PASS: pass
       PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-      PAM_CONFIG: 'UsePAM yes'
+      PAM_CONFIG: "UsePAM yes"
     restart: "unless-stopped"
     ports:
-      - '2247:22'
+      - "2247:22"
 
   key-and-invalid-keyboard:
     mem_limit: 64m
@@ -654,10 +676,10 @@ services:
     environment:
       ADMIN: sa
       PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-      PAM_CONFIG: 'UsePAM no'
+      PAM_CONFIG: "UsePAM no"
     restart: "unless-stopped"
     ports:
-      - '2248:22'
+      - "2248:22"
 
   key-and-valid-keyboard-single-attempt:
     mem_limit: 64m
@@ -672,7 +694,7 @@ services:
       MAX_AUTH_TRIES: MaxAuthTries 1
     restart: "unless-stopped"
     ports:
-      - '2249:22'
+      - "2249:22"
 
   keyboard-interactive-custom:
     mem_limit: 64m
@@ -684,7 +706,7 @@ services:
       ADMIN_PASS: pass
     restart: "unless-stopped"
     ports:
-      - '2239:22'
+      - "2239:22"
 
   # Hostkey types:
 
@@ -700,7 +722,7 @@ services:
       HOST_KEY_NAME: ssh_host_rsa_key
     restart: "unless-stopped"
     ports:
-      - '2255:22'
+      - "2255:22"
 
   hostkey-ed25519:
     mem_limit: 64m
@@ -714,7 +736,7 @@ services:
       HOST_KEY_NAME: ssh_host_ed25519_key
     restart: "unless-stopped"
     ports:
-      - '2256:22'
+      - "2256:22"
 
   hostkey-multi:
     mem_limit: 64m
@@ -728,7 +750,7 @@ services:
       HOST_KEY_NAME: ssh_host_rsa_key ssh_host_ed25519_key
     restart: "unless-stopped"
     ports:
-      - '2257:22'
+      - "2257:22"
 
   # SSH servers:
 
@@ -743,7 +765,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2236:22'
+      - "2236:22"
 
   dropbear-ed25519:
     mem_limit: 64m
@@ -757,7 +779,7 @@ services:
       DROPBEAR_KEY_FILE: /etc/dropbear/dropbear_ed25519_host_key
     restart: "unless-stopped"
     ports:
-      - '2242:22'
+      - "2242:22"
 
   dropbear-ecdsa:
     mem_limit: 64m
@@ -771,7 +793,7 @@ services:
       DROPBEAR_KEY_FILE: /etc/dropbear/dropbear_ecdsa_host_key
     restart: "unless-stopped"
     ports:
-      - '2243:22'
+      - "2243:22"
 
   tinyssh:
     mem_limit: 64m
@@ -783,7 +805,7 @@ services:
       PUB_KEY_NAME: id_ed25519.pub
     restart: "unless-stopped"
     ports:
-      - '2238:22'
+      - "2238:22"
 
   key-ssh-9.6:
     mem_limit: 64m
@@ -797,7 +819,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
     restart: "unless-stopped"
     ports:
-      - '2293:22'
+      - "2293:22"
 
   key-ssh-8.2:
     mem_limit: 64m
@@ -811,7 +833,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
     restart: "unless-stopped"
     ports:
-      - '2259:22'
+      - "2259:22"
 
   key-ssh-7.6:
     mem_limit: 64m
@@ -825,7 +847,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
     restart: "unless-stopped"
     ports:
-      - '2260:22'
+      - "2260:22"
 
   key-ssh-5.9:
     mem_limit: 64m
@@ -840,7 +862,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
     restart: "unless-stopped"
     ports:
-      - '2294:22'
+      - "2294:22"
 
   key-ssh-6.2:
     mem_limit: 64m
@@ -855,7 +877,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
     restart: "unless-stopped"
     ports:
-      - '2295:22'
+      - "2295:22"
 
   rocky:
     mem_limit: 64m
@@ -868,7 +890,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2292:22'
+      - "2292:22"
 
   # Protocols:
 
@@ -882,7 +904,7 @@ services:
       ADMIN_PASS: pass
     restart: "unless-stopped"
     ports:
-      - '2216:23'
+      - "2216:23"
 
   mosh-key:
     mem_limit: 64m
@@ -895,8 +917,8 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2224:22'
-      - '60001-60010:60001-60010/udp'
+      - "2224:22"
+      - "60001-60010:60001-60010/udp"
 
   mosh-unstable:
     mem_limit: 64m
@@ -912,8 +934,8 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2232:22'
-      - '60021-60030:60021-60030/udp'
+      - "2232:22"
+      - "60021-60030:60021-60030/udp"
 
   mosh-pass:
     mem_limit: 64m
@@ -926,8 +948,8 @@ services:
       CONFIG: sshd_config
     restart: "unless-stopped"
     ports:
-      - '2233:22'
-      - '60011-60020:60011-60020/udp'
+      - "2233:22"
+      - "60011-60020:60011-60020/udp"
 
   # Port forwarding:
 
@@ -940,7 +962,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2228:22'
+      - "2228:22"
 
   pf-case-jump:
     mem_limit: 64m
@@ -949,14 +971,13 @@ services:
       ADMIN: qa
       CONFIG: sshd_config
       PUB_KEY_NAME: id_rsa.pub
-    depends_on: [ pf-case-keystorage, pf-case-target ]
+    depends_on: [pf-case-keystorage, pf-case-target]
     ports:
-      - '2230:22'
+      - "2230:22"
     restart: "unless-stopped"
     networks:
       - pf-case-keystorage
       - pf-case-target
-
 
   pf-case-keystorage:
     mem_limit: 64m
@@ -994,7 +1015,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2223:22'
+      - "2223:22"
 
   # Authentication:
 
@@ -1009,7 +1030,7 @@ services:
       # template for it is "unixUserName:email:countrycode:phoneNumber unixUserName:email:countrycode:phoneNumber"
     restart: "unless-stopped"
     ports:
-      - '2203:22'
+      - "2203:22"
 
   authypass:
     mem_limit: 64m
@@ -1022,7 +1043,7 @@ services:
       # template for it is "unixUserName:email:countrycode:phoneNumber unixUserName:email:countrycode:phoneNumber"
     restart: "unless-stopped"
     ports:
-      - '2204:22'
+      - "2204:22"
 
   otp:
     mem_limit: 64m
@@ -1035,7 +1056,7 @@ services:
       ADMIN: sa
     restart: "unless-stopped"
     ports:
-      - '2205:22'
+      - "2205:22"
 
   pass_otp:
     mem_limit: 64m
@@ -1049,7 +1070,7 @@ services:
       ADMIN_PASS: pass
     restart: "unless-stopped"
     ports:
-      - '2258:22'
+      - "2258:22"
 
   yubikey-pam:
     mem_limit: 64m
@@ -1060,7 +1081,7 @@ services:
       ADMIN: sa
     restart: "unless-stopped"
     ports:
-      - '2221:22'
+      - "2221:22"
 
   # Proxy:
 
@@ -1068,7 +1089,7 @@ services:
     mem_limit: 512m
     build: http-proxy
     ports:
-      - '8888:3128'
+      - "8888:3128"
     restart: "unless-stopped"
     links:
       - pass
@@ -1078,7 +1099,7 @@ services:
     mem_limit: 512m
     build: socks5
     ports:
-      - '1080:1080'
+      - "1080:1080"
     restart: "unless-stopped"
     links:
       - pass
@@ -1091,7 +1112,7 @@ services:
       args:
         SQUID_CONFIG: authenticated-squid.conf
     ports:
-      - '8890:3128'
+      - "8890:3128"
     restart: "unless-stopped"
     links:
       - pass
@@ -1107,7 +1128,7 @@ services:
       ADMIN_PASS: 1
       PRIVATE_KEY_NAME: id_rsa
     ports:
-      - '2217:22'
+      - "2217:22"
     restart: "unless-stopped"
     links:
       - chain2
@@ -1139,7 +1160,7 @@ services:
     mem_limit: 256m
     build: http-proxy
     ports:
-      - '8889:3128'
+      - "8889:3128"
     restart: "unless-stopped"
     links:
       - chain1
@@ -1170,7 +1191,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2222:22'
+      - "2222:22"
 
   sftp-disabled:
     mem_limit: 64m
@@ -1181,8 +1202,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2227:22'
-
+      - "2227:22"
 
   export-key:
     mem_limit: 64m
@@ -1196,7 +1216,7 @@ services:
       PRIVATE_KEY_NAME: id_rsa
     restart: "unless-stopped"
     ports:
-      - '2234:22'
+      - "2234:22"
 
   channels-limit-1:
     mem_limit: 64m
@@ -1208,7 +1228,7 @@ services:
       MAX_SESSIONS: 1
     restart: "unless-stopped"
     ports:
-      - '2244:22'
+      - "2244:22"
 
   channels-limit-2:
     mem_limit: 64m
@@ -1220,7 +1240,7 @@ services:
       MAX_SESSIONS: 2
     restart: "unless-stopped"
     ports:
-      - '2246:22'
+      - "2246:22"
 
   anomaly-exec-openssh:
     mem_limit: 64m
@@ -1233,7 +1253,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
     restart: "unless-stopped"
     ports:
-      - '2250:22'
+      - "2250:22"
 
   anomaly-exec-custom:
     mem_limit: 64m
@@ -1248,7 +1268,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
     restart: "unless-stopped"
     ports:
-      - '2251:22'
+      - "2251:22"
 
   chacha-poly-with-hmac:
     mem_limit: 64m
@@ -1261,15 +1281,15 @@ services:
       PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - '2294:22'
+      - "2294:22"
 
 networks:
   pf-case-keystorage:
     ipam:
       config:
-      - subnet: 172.25.1.0/24
+        - subnet: 172.25.1.0/24
   pf-case-target:
     driver: bridge
     ipam:
       config:
-      - subnet: 172.25.2.0/24
+        - subnet: 172.25.2.0/24
