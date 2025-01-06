@@ -65,6 +65,28 @@ services:
     ports:
       - "2206:22"
 
+  ed25519-aes128-gcm:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_ed25519_aes128-gcm.pub
+    restart: "unless-stopped"
+    ports:
+      - "2296:22"
+
+  ed25519-aes256-gcm:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_ed25519_aes256-gcm.pub
+    restart: "unless-stopped"
+    ports:
+      - "2297:22"
+
   ecdsa-nistp256:
     mem_limit: 64m
     build: .
