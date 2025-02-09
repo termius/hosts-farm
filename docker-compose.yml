@@ -1154,6 +1154,7 @@ services:
     restart: "unless-stopped"
     links:
       - chain2
+      - chain2-auth-tries-1
       - http-proxy-chain2
 
   chain2:
@@ -1164,6 +1165,20 @@ services:
       CONFIG: sshd_config
       PUB_KEY_NAME: id_rsa.pub
       PRIVATE_KEY_NAME: id_rsa1
+    restart: "unless-stopped"
+    links:
+      - chain3
+      - http-proxy-chain3
+
+  chain2-auth-tries-1:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: chain2
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_rsa.pub
+      PRIVATE_KEY_NAME: id_rsa1
+      MAX_AUTH_TRIES: MaxAuthTries 1
     restart: "unless-stopped"
     links:
       - chain3
