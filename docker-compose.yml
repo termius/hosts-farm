@@ -942,6 +942,21 @@ services:
       - "2224:22"
       - "60001-60010:60001-60010/udp"
 
+  mosh-key-auth-tries-1:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: mosh/Dockerfile
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config
+      PUB_KEY_NAME: id_rsa.pub
+      MAX_AUTH_TRIES: MaxAuthTries 1
+    restart: "unless-stopped"
+    ports:
+      - "22241:22"
+      - "60031-60040:60031-60040/udp"
+
   mosh-unstable:
     mem_limit: 64m
     build:
