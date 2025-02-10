@@ -13,7 +13,7 @@ RUN apt-get update -y && apt-get upgrade -y && \
 RUN apt-get install -y mosh iproute2
 
 ADD mosh/entrypoint.sh /usr/bin/entrypoint.sh
-ADD mosh/sshd_config /etc/ssh/sshd_config
+ADD mosh/sshd_config /tmp/
 ADD keys /tmp/
 ADD zshrc /tmp/
 
