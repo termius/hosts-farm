@@ -884,7 +884,7 @@ services:
       PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
     restart: "unless-stopped"
     ports:
-      - "2294:22"
+      - "2298:22"
 
   key-ssh-6.2:
     mem_limit: 64m
