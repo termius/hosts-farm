@@ -915,6 +915,21 @@ services:
     ports:
       - "2299:22"
 
+  key-oqs:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: oqs/Dockerfile
+      args:
+        UBUNTU_VERSION: "22.04"
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_oqs
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+    restart: "unless-stopped"
+    ports:
+      - "22100:22"
+
   # Protocols:
 
   telnet:
