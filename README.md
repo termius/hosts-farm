@@ -115,6 +115,8 @@ When you want to add new server configuration follow step below:
 |           client-cert-sha1           |          2291           |     sa      |      -      |                                                                          [user key](/client-cert/user-key)</br>[user certificate](/client-cert/user-key-cert.pub)                      |                                                    |
 |           key-auth-tries-1           |          22021          |     sa      |      -      |                                                            [rsa key](/keys/id_rsa) <br/> [encrypted rsa key](/keys/id_rsa_encrypted)                                                            | 
 |           key-auth-tries-2           |          22022          |     sa      |      -      |                                                            [rsa key](/keys/id_rsa) <br/> [encrypted rsa key](/keys/id_rsa_encrypted)                                                            |
+|             key-ssh-10               |          2299           |     sa      |      -      |                                                            [rsa key](/keys/id_rsa) <br/> [encrypted rsa key](/keys/id_rsa_encrypted)                                                            |
+|              key-oqs                 |          22100          |     sa      |      -      |                                                            [rsa key](/keys/id_rsa) <br/> [encrypted rsa key](/keys/id_rsa_encrypted)                                                            |
 
 Passphrase for [`keys/id_rsa_encrypted`](/keys/id_rsa_encrypted) is `termius-test`.
 
