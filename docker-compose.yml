@@ -4,916 +4,933 @@ version: "2"
 services:
   # Pass:
 
-  pass:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: pass/Dockerfile
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-      CONFIG: sshd_config
-    restart: "unless-stopped"
-    ports:
-      - "2201:22"
-
-  # Key types:
-
-  key:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_key
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-    restart: "unless-stopped"
-    ports:
-      - "2202:22"
-
-  key-auth-tries-1:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_key
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-      MAX_AUTH_TRIES: MaxAuthTries 1
-    restart: "unless-stopped"
-    ports:
-      - "22021:22"
-
-  key-auth-tries-2:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_key
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-      MAX_AUTH_TRIES: MaxAuthTries 2
-    restart: "unless-stopped"
-    ports:
-      - "22022:22"
-
-  ed25519:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config
-      PUB_KEY_NAME: id_ed25519.pub
-    restart: "unless-stopped"
-    ports:
-      - "2206:22"
-
-  ed25519-aes128-gcm:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config
-      PUB_KEY_NAME: id_ed25519_aes128-gcm.pub
-    restart: "unless-stopped"
-    ports:
-      - "2296:22"
-
-  ed25519-aes256-gcm:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config
-      PUB_KEY_NAME: id_ed25519_aes256-gcm.pub
-    restart: "unless-stopped"
-    ports:
-      - "2297:22"
-
-  ecdsa-nistp256:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config
-      PUB_KEY_NAME: id_ecdsa_nistp256.pub id_ecdsa_nistp256_openssh.pub
-    restart: "unless-stopped"
-    ports:
-      - "2207:22"
-
-  ecdsa-nistp384:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config
-      PUB_KEY_NAME: id_ecdsa_nistp384.pub
-    restart: "unless-stopped"
-    ports:
-      - "2218:22"
-
-  ecdsa-nistp521:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config
-      PUB_KEY_NAME: id_ecdsa_nistp521.pub
-    restart: "unless-stopped"
-    ports:
-      - "2219:22"
-
-  putty:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config
-      PUB_KEY_NAME: putty_rsa.pub putty_rsa_encrypted.pub putty3_rsa_encrypted.pub
-    restart: "unless-stopped"
-    ports:
-      - "2237:22"
-
-  dsa:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_dsa
-      PUB_KEY_NAME: id_dsa_legacy.pub id_dsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2240:22"
-
-  rsa-pkcs8:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config
-      PUB_KEY_NAME: id_rsa_pkcs8.pub id_rsa_pkcs8_encrypted.pub
-    restart: "unless-stopped"
-    ports:
-      - "2241:22"
-
-  disabled-rsa-sha:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-      CONFIG: sshd_config_rsa_sha2
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2235:22"
-
-  rsa-sha2-256:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_rsa_sha2_256
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2289:22"
-
-  rsa-sha2-512:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_rsa_sha2_512
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2290:22"
-
-  client-cert:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: client-cert/Dockerfile
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config
-    restart: "unless-stopped"
-    ports:
-      - "2231:22"
-
-  client-cert-sha1:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: client-cert/Dockerfile_sha1
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config
-    restart: "unless-stopped"
-    ports:
-      - "2291:22"
-
-  # Ciphers:
-
-  chacha20-poly1305_at_openssh.com:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CIPHER: chacha20-poly1305@openssh.com
-      CONFIG: sshd_config_ciphers
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2210:22"
-
-  aes128-ctr:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CIPHER: aes128-ctr
-      CONFIG: sshd_config_ciphers
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2211:22"
-
-  aes192-ctr:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CIPHER: aes192-ctr
-      CONFIG: sshd_config_ciphers
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2212:22"
-
-  aes256-ctr:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CIPHER: aes256-ctr
-      CONFIG: sshd_config_ciphers
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2213:22"
-
-  aes128-gcm:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CIPHER: aes128-gcm@openssh.com
-      CONFIG: sshd_config_ciphers
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2275:22"
-
-  aes256-gcm:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CIPHER: aes256-gcm@openssh.com
-      CONFIG: sshd_config_ciphers
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2276:22"
-
-  aes128-cbc:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CIPHER: aes128-cbc
-      CONFIG: sshd_config_ciphers
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2277:22"
-
-  aes192-cbc:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CIPHER: aes192-cbc
-      CONFIG: sshd_config_ciphers
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2278:22"
-
-  aes256-cbc:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CIPHER: aes256-cbc
-      CONFIG: sshd_config_ciphers
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2279:22"
-
-  # MAC:
-
-  hmac-sha2-256:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: hmac-sha2-256
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2208:22"
-
-  hmac-sha2-512:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: hmac-sha2-512
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2209:22"
-
-  hmac-sha1:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: hmac-sha1
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2261:22"
-
-  hmac-sha1-etm:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: hmac-sha1-etm@openssh.com
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2262:22"
-
-  hmac-sha2-256-etm:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: hmac-sha2-256-etm@openssh.com
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2263:22"
-
-  hmac-sha2-512-etm:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: hmac-sha2-512-etm@openssh.com
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2264:22"
-
-  hmac-sha1-96:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: hmac-sha1-96
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2265:22"
-
-  hmac-sha1-96-etm:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: hmac-sha1-96-etm@openssh.com
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2266:22"
-
-  hmac-md5:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: hmac-md5
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2267:22"
-
-  hmac-md5-etm:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: hmac-md5-etm@openssh.com
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2268:22"
-
-  hmac-md5-96:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: hmac-md5-96
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2269:22"
-
-  hmac-md5-96-etm:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: hmac-md5-96-etm@openssh.com
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2270:22"
-
-  umac-64:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: umac-64@openssh.com
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2271:22"
-
-  umac-64-etm:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: umac-64-etm@openssh.com
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2272:22"
-
-  umac-128:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: umac-128@openssh.com
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2273:22"
-
-  umac-128-etm:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      MAC: umac-128-etm@openssh.com
-      CONFIG: sshd_config_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2274:22"
-
-  # KEX:
-
-  curve25519-sha256:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      KEX: curve25519-sha256@libssh.org
-      CONFIG: sshd_config_kex
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2214:22"
-
-  diffie-hellman-group-exchange-sha256:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      KEX: diffie-hellman-group-exchange-sha256
-      CONFIG: sshd_config_kex
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2215:22"
-
-  ecdh-sha2-nistp256:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      KEX: ecdh-sha2-nistp256
-      CONFIG: sshd_config_kex
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2280:22"
-
-  ecdh-sha2-nistp384:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      KEX: ecdh-sha2-nistp384
-      CONFIG: sshd_config_kex
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2281:22"
-
-  ecdh-sha2-nistp521:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      KEX: ecdh-sha2-nistp521
-      CONFIG: sshd_config_kex
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2282:22"
-
-  diffie-hellman-group1-sha1:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      KEX: diffie-hellman-group1-sha1
-      CONFIG: sshd_config_kex
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2283:22"
-
-  diffie-hellman-group14-sha1:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      KEX: diffie-hellman-group14-sha1
-      CONFIG: sshd_config_kex
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2284:22"
-
-  diffie-hellman-group14-sha256:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      KEX: diffie-hellman-group14-sha256
-      CONFIG: sshd_config_kex
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2285:22"
-
-  diffie-hellman-group16-sha512:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      KEX: diffie-hellman-group16-sha512
-      CONFIG: sshd_config_kex
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2286:22"
-
-  diffie-hellman-group18-sha512:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      KEX: diffie-hellman-group18-sha512
-      CONFIG: sshd_config_kex
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2287:22"
-
-  diffie-hellman-group-exchange-sha1:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      KEX: diffie-hellman-group-exchange-sha1
-      CONFIG: sshd_config_kex
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2288:22"
-
-  # Interactive authentication:
-
-  multiple-auths:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: multiple-auths/Dockerfile
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2225:22"
-
-  keyboard-interactive-pass:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: keyboard-interactive-pass/Dockerfile
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-    restart: "unless-stopped"
-    ports:
-      - "2226:22"
-
-  key-and-valid-keyboard:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: keyboard-interactive-edgecases/Dockerfile
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-      PAM_CONFIG: "UsePAM yes"
-    restart: "unless-stopped"
-    ports:
-      - "2247:22"
-
-  key-and-invalid-keyboard:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: keyboard-interactive-edgecases/Dockerfile
-    environment:
-      ADMIN: sa
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-      PAM_CONFIG: "UsePAM no"
-    restart: "unless-stopped"
-    ports:
-      - "2248:22"
-
-  key-and-valid-keyboard-single-attempt:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: keyboard-interactive-edgecases/Dockerfile
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-      PAM_CONFIG: UsePAM yes
-      MAX_AUTH_TRIES: MaxAuthTries 1
-    restart: "unless-stopped"
-    ports:
-      - "2249:22"
-
-  keyboard-interactive-custom:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: keyboard-interactive-custom/Dockerfile
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-    restart: "unless-stopped"
-    ports:
-      - "2239:22"
-
-  # Hostkey types:
-
-  hostkey-rsa:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: hostkey-order/Dockerfile
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-      CONFIG: pass/sshd_config
-      HOST_KEY_NAME: ssh_host_rsa_key
-    restart: "unless-stopped"
-    ports:
-      - "2255:22"
-
-  hostkey-ed25519:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: hostkey-order/Dockerfile
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-      CONFIG: pass/sshd_config
-      HOST_KEY_NAME: ssh_host_ed25519_key
-    restart: "unless-stopped"
-    ports:
-      - "2256:22"
-
-  hostkey-multi:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: hostkey-order/Dockerfile
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-      CONFIG: pass/sshd_config
-      HOST_KEY_NAME: ssh_host_rsa_key ssh_host_ed25519_key
-    restart: "unless-stopped"
-    ports:
-      - "2257:22"
-
-  # SSH servers:
-
-  dropbear:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: dropbear/Dockerfile
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2236:22"
-
-  dropbear-ed25519:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: dropbear/Dockerfile
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-      PUB_KEY_NAME: id_rsa.pub
-      DROPBEAR_KEY_FILE: /etc/dropbear/dropbear_ed25519_host_key
-    restart: "unless-stopped"
-    ports:
-      - "2242:22"
-
-  dropbear-ecdsa:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: dropbear/Dockerfile
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-      PUB_KEY_NAME: id_rsa.pub
-      DROPBEAR_KEY_FILE: /etc/dropbear/dropbear_ecdsa_host_key
-    restart: "unless-stopped"
-    ports:
-      - "2243:22"
-
-  tinyssh:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: tinyssh/Dockerfile
-    environment:
-      ADMIN: sa
-      PUB_KEY_NAME: id_ed25519.pub
-    restart: "unless-stopped"
-    ports:
-      - "2238:22"
-
-  key-ssh-9.6:
-    mem_limit: 64m
-    build:
-      context: .
-      args:
-        UBUNTU_VERSION: 24.04
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_key
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-    restart: "unless-stopped"
-    ports:
-      - "2293:22"
-
-  key-ssh-8.2:
-    mem_limit: 64m
-    build:
-      context: .
-      args:
-        UBUNTU_VERSION: 20.04
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_key
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-    restart: "unless-stopped"
-    ports:
-      - "2259:22"
-
-  key-ssh-7.6:
-    mem_limit: 64m
-    build:
-      context: .
-      args:
-        UBUNTU_VERSION: 18.04
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_key
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-    restart: "unless-stopped"
-    ports:
-      - "2260:22"
-
-  key-ssh-5.9:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: ubuntu-old/Dockerfile
-      args:
-        UBUNTU_VERSION: "12.04"
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_key
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-    restart: "unless-stopped"
-    ports:
-      - "2298:22"
-
-  rocky:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: rocky/Dockerfile
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2292:22"
-
-  key-ssh-10:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: openssh10/Dockerfile
-      args:
-        UBUNTU_VERSION: "22.04"
-    environment:
-      ADMIN: sa
-      KEX: mlkem768x25519-sha256
-      CONFIG: sshd_config_kex
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-    restart: "unless-stopped"
-    ports:
-      - "2299:22"
+#  pass:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: pass/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#      CONFIG: sshd_config
+#    restart: "unless-stopped"
+#    ports:
+#      - "2201:22"
+#
+#  # Key types:
+#
+#  key:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_key
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2202:22"
+#
+#  key-auth-tries-1:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_key
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#      MAX_AUTH_TRIES: MaxAuthTries 1
+#    restart: "unless-stopped"
+#    ports:
+#      - "22021:22"
+#
+#  key-auth-tries-2:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_key
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#      MAX_AUTH_TRIES: MaxAuthTries 2
+#    restart: "unless-stopped"
+#    ports:
+#      - "22022:22"
+#
+#  ed25519:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: id_ed25519.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2206:22"
+#
+#  ed25519-aes128-gcm:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: id_ed25519_aes128-gcm.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2296:22"
+#
+#  ed25519-aes256-gcm:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: id_ed25519_aes256-gcm.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2297:22"
+#
+#  ecdsa-nistp256:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: id_ecdsa_nistp256.pub id_ecdsa_nistp256_openssh.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2207:22"
+#
+#  ecdsa-nistp384:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: id_ecdsa_nistp384.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2218:22"
+#
+#  ecdsa-nistp521:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: id_ecdsa_nistp521.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2219:22"
+#
+#  putty:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: putty_rsa.pub putty_rsa_encrypted.pub putty3_rsa_encrypted.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2237:22"
+#
+#  dsa:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_dsa
+#      PUB_KEY_NAME: id_dsa_legacy.pub id_dsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2240:22"
+#
+#  rsa-pkcs8:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: id_rsa_pkcs8.pub id_rsa_pkcs8_encrypted.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2241:22"
+#
+#  disabled-rsa-sha:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#      CONFIG: sshd_config_rsa_sha2
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2235:22"
+#
+#  rsa-sha2-256:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_rsa_sha2_256
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2289:22"
+#
+#  rsa-sha2-512:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_rsa_sha2_512
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2290:22"
+#
+#  client-cert:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: client-cert/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config
+#    restart: "unless-stopped"
+#    ports:
+#      - "2231:22"
+#
+#  client-cert-sha1:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: client-cert/Dockerfile_sha1
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config
+#    restart: "unless-stopped"
+#    ports:
+#      - "2291:22"
+#
+#  # Ciphers:
+#
+#  chacha20-poly1305_at_openssh.com:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CIPHER: chacha20-poly1305@openssh.com
+#      CONFIG: sshd_config_ciphers
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2210:22"
+#
+#  aes128-ctr:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CIPHER: aes128-ctr
+#      CONFIG: sshd_config_ciphers
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2211:22"
+#
+#  aes192-ctr:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CIPHER: aes192-ctr
+#      CONFIG: sshd_config_ciphers
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2212:22"
+#
+#  aes256-ctr:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CIPHER: aes256-ctr
+#      CONFIG: sshd_config_ciphers
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2213:22"
+#
+#  aes128-gcm:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CIPHER: aes128-gcm@openssh.com
+#      CONFIG: sshd_config_ciphers
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2275:22"
+#
+#  aes256-gcm:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CIPHER: aes256-gcm@openssh.com
+#      CONFIG: sshd_config_ciphers
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2276:22"
+#
+#  aes128-cbc:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CIPHER: aes128-cbc
+#      CONFIG: sshd_config_ciphers
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2277:22"
+#
+#  aes192-cbc:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CIPHER: aes192-cbc
+#      CONFIG: sshd_config_ciphers
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2278:22"
+#
+#  aes256-cbc:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CIPHER: aes256-cbc
+#      CONFIG: sshd_config_ciphers
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2279:22"
+#
+#  # MAC:
+#
+#  hmac-sha2-256:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: hmac-sha2-256
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2208:22"
+#
+#  hmac-sha2-512:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: hmac-sha2-512
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2209:22"
+#
+#  hmac-sha1:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: hmac-sha1
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2261:22"
+#
+#  hmac-sha1-etm:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: hmac-sha1-etm@openssh.com
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2262:22"
+#
+#  hmac-sha2-256-etm:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: hmac-sha2-256-etm@openssh.com
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2263:22"
+#
+#  hmac-sha2-512-etm:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: hmac-sha2-512-etm@openssh.com
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2264:22"
+#
+#  hmac-sha1-96:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: hmac-sha1-96
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2265:22"
+#
+#  hmac-sha1-96-etm:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: hmac-sha1-96-etm@openssh.com
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2266:22"
+#
+#  hmac-md5:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: hmac-md5
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2267:22"
+#
+#  hmac-md5-etm:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: hmac-md5-etm@openssh.com
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2268:22"
+#
+#  hmac-md5-96:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: hmac-md5-96
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2269:22"
+#
+#  hmac-md5-96-etm:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: hmac-md5-96-etm@openssh.com
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2270:22"
+#
+#  umac-64:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: umac-64@openssh.com
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2271:22"
+#
+#  umac-64-etm:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: umac-64-etm@openssh.com
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2272:22"
+#
+#  umac-128:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: umac-128@openssh.com
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2273:22"
+#
+#  umac-128-etm:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      MAC: umac-128-etm@openssh.com
+#      CONFIG: sshd_config_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2274:22"
+#
+#  # KEX:
+#
+#  curve25519-sha256:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      KEX: curve25519-sha256@libssh.org
+#      CONFIG: sshd_config_kex
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2214:22"
+#
+#  diffie-hellman-group-exchange-sha256:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      KEX: diffie-hellman-group-exchange-sha256
+#      CONFIG: sshd_config_kex
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2215:22"
+#
+#  ecdh-sha2-nistp256:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      KEX: ecdh-sha2-nistp256
+#      CONFIG: sshd_config_kex
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2280:22"
+#
+#  ecdh-sha2-nistp384:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      KEX: ecdh-sha2-nistp384
+#      CONFIG: sshd_config_kex
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2281:22"
+#
+#  ecdh-sha2-nistp521:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      KEX: ecdh-sha2-nistp521
+#      CONFIG: sshd_config_kex
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2282:22"
+#
+#  diffie-hellman-group1-sha1:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      KEX: diffie-hellman-group1-sha1
+#      CONFIG: sshd_config_kex
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2283:22"
+#
+#  diffie-hellman-group14-sha1:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      KEX: diffie-hellman-group14-sha1
+#      CONFIG: sshd_config_kex
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2284:22"
+#
+#  diffie-hellman-group14-sha256:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      KEX: diffie-hellman-group14-sha256
+#      CONFIG: sshd_config_kex
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2285:22"
+#
+#  diffie-hellman-group16-sha512:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      KEX: diffie-hellman-group16-sha512
+#      CONFIG: sshd_config_kex
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2286:22"
+#
+#  diffie-hellman-group18-sha512:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      KEX: diffie-hellman-group18-sha512
+#      CONFIG: sshd_config_kex
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2287:22"
+#
+#  diffie-hellman-group-exchange-sha1:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      KEX: diffie-hellman-group-exchange-sha1
+#      CONFIG: sshd_config_kex
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2288:22"
+#
+#  # Interactive authentication:
+#
+#  multiple-auths:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: multiple-auths/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2225:22"
+#
+#  keyboard-interactive-pass:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: keyboard-interactive-pass/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#    restart: "unless-stopped"
+#    ports:
+#      - "2226:22"
+#
+#  key-and-valid-keyboard:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: keyboard-interactive-edgecases/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#      PAM_CONFIG: "UsePAM yes"
+#    restart: "unless-stopped"
+#    ports:
+#      - "2247:22"
+#
+#  key-and-invalid-keyboard:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: keyboard-interactive-edgecases/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#      PAM_CONFIG: "UsePAM no"
+#    restart: "unless-stopped"
+#    ports:
+#      - "2248:22"
+#
+#  key-and-valid-keyboard-single-attempt:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: keyboard-interactive-edgecases/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#      PAM_CONFIG: UsePAM yes
+#      MAX_AUTH_TRIES: MaxAuthTries 1
+#    restart: "unless-stopped"
+#    ports:
+#      - "2249:22"
+#
+#  keyboard-interactive-custom:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: keyboard-interactive-custom/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#    restart: "unless-stopped"
+#    ports:
+#      - "2239:22"
+#
+#  # Hostkey types:
+#
+#  hostkey-rsa:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: hostkey-order/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#      CONFIG: pass/sshd_config
+#      HOST_KEY_NAME: ssh_host_rsa_key
+#    restart: "unless-stopped"
+#    ports:
+#      - "2255:22"
+#
+#  hostkey-ed25519:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: hostkey-order/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#      CONFIG: pass/sshd_config
+#      HOST_KEY_NAME: ssh_host_ed25519_key
+#    restart: "unless-stopped"
+#    ports:
+#      - "2256:22"
+#
+#  hostkey-multi:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: hostkey-order/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#      CONFIG: pass/sshd_config
+#      HOST_KEY_NAME: ssh_host_rsa_key ssh_host_ed25519_key
+#    restart: "unless-stopped"
+#    ports:
+#      - "2257:22"
+#
+#  # SSH servers:
+#
+#  dropbear:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: dropbear/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2236:22"
+#
+#  dropbear-ed25519:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: dropbear/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#      PUB_KEY_NAME: id_rsa.pub
+#      DROPBEAR_KEY_FILE: /etc/dropbear/dropbear_ed25519_host_key
+#    restart: "unless-stopped"
+#    ports:
+#      - "2242:22"
+#
+#  dropbear-ecdsa:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: dropbear/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#      PUB_KEY_NAME: id_rsa.pub
+#      DROPBEAR_KEY_FILE: /etc/dropbear/dropbear_ecdsa_host_key
+#    restart: "unless-stopped"
+#    ports:
+#      - "2243:22"
+#
+#  tinyssh:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: tinyssh/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      PUB_KEY_NAME: id_ed25519.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2238:22"
+#
+#  key-ssh-9.6:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      args:
+#        UBUNTU_VERSION: 24.04
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_key
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2293:22"
+#
+#  key-ssh-8.2:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      args:
+#        UBUNTU_VERSION: 20.04
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_key
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2259:22"
+#
+#  key-ssh-7.6:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      args:
+#        UBUNTU_VERSION: 18.04
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_key
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2260:22"
+#
+#  key-ssh-5.9:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: ubuntu-old/Dockerfile
+#      args:
+#        UBUNTU_VERSION: "12.04"
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_key
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2298:22"
+#
+#  rocky:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: rocky/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2292:22"
+
+
+#  key-ssh-11:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: openssh10/Dockerfile
+#      args:
+#        UBUNTU_VERSION: "22.04"
+#    environment:
+#      ADMIN: sa
+#      KEX: mlkem768x25519-sha256
+#      CONFIG: sshd_config_kex
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2200:22"
+
+#  key-ssh-10:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: openssh10/Dockerfile
+#      args:
+#        UBUNTU_VERSION: "22.04"
+#    environment:
+#      ADMIN: sa
+#      KEX: mlkem768x25519-sha256
+#      CONFIG: sshd_config_kex
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2299:22"
 
   key-oqs:
     mem_limit: 64m
@@ -923,403 +940,445 @@ services:
       args:
         UBUNTU_VERSION: "22.04"
     environment:
+      DELAY_MS: 1000
       ADMIN: sa
       CONFIG: sshd_config_oqs
       PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-    restart: "unless-stopped"
-    ports:
-      - "22100:22"
-
-  # Protocols:
-
-  telnet:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: telnet/Dockerfile
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-    restart: "unless-stopped"
-    ports:
-      - "2216:23"
-
-  mosh-key:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: mosh/Dockerfile
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2224:22"
-      - "60001-60010:60001-60010/udp"
-
-  mosh-unstable:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: mosh/Dockerfile
+    command: /openssh/sshd -D -o KexAlgorithms=mlkem512-sha256
     cap_add:
       - NET_ADMIN
-    environment:
-      UNSTABLE_NETWORK: "true"
-      ADMIN: sa
-      CONFIG: sshd_config
-      PUB_KEY_NAME: id_rsa.pub
     restart: "unless-stopped"
     ports:
-      - "2232:22"
-      - "60021-60030:60021-60030/udp"
+      - "2201:22"
 
-  mosh-pass:
+
+  key-oqs-1:
     mem_limit: 64m
     build:
       context: .
-      dockerfile: mosh/Dockerfile
+      dockerfile: oqs/Dockerfile
+      args:
+        UBUNTU_VERSION: "22.04"
     environment:
+      DELAY_MS: 1000
       ADMIN: sa
-      ADMIN_PASS: pass
-      CONFIG: sshd_config
+      CONFIG: sshd_config_oqs
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+    command: /openssh/sshd -D -o KexAlgorithms=mlkem768-sha256
+    cap_add:
+      - NET_ADMIN
     restart: "unless-stopped"
     ports:
-      - "2233:22"
-      - "60011-60020:60011-60020/udp"
+      - "2202:22"
 
-  # Port forwarding:
-
-  pf-disabled:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_no_pf
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2228:22"
-
-  pf-case-jump:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: qa
-      CONFIG: sshd_config
-      PUB_KEY_NAME: id_rsa.pub
-    depends_on: [pf-case-keystorage, pf-case-target]
-    ports:
-      - "2230:22"
-    restart: "unless-stopped"
-    networks:
-      - pf-case-keystorage
-      - pf-case-target
-
-  pf-case-keystorage:
-    mem_limit: 64m
-    build: .
-    command: bash -c 'cat /tmp/id_rsa1 > /home/$$ADMIN/id_rsa;/usr/sbin/sshd -D'
-    environment:
-      ADMIN: qa
-      CONFIG: sshd_config
-      PUB_KEY_NAME: id_ed25519.pub
-    restart: "unless-stopped"
-    networks:
-      pf-case-keystorage:
-        ipv4_address: 172.25.1.101
-
-  pf-case-target:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: qa
-      CONFIG: sshd_config
-      PUB_KEY_NAME: id_rsa1.pub
-    restart: "unless-stopped"
-    networks:
-      pf-case-target:
-        ipv4_address: 172.25.2.101
-
-  gateway-ports:
+  key-oqs-2:
     mem_limit: 64m
     build:
       context: .
-      dockerfile: gateway-ports/Dockerfile
+      dockerfile: oqs/Dockerfile
+      args:
+        UBUNTU_VERSION: "22.04"
     environment:
+      DELAY_MS: 1000
       ADMIN: sa
-      CONFIG: sshd_config
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2223:22"
-
-  # Authentication:
-
-  authykey:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: authykey/Dockerfile
-    environment:
-      AUTHY_API_KEY: ${AUTHY_API_KEY}
-      ADMIN_LIST: ${ADMIN_LIST}
-      # template for it is "unixUserName:email:countrycode:phoneNumber unixUserName:email:countrycode:phoneNumber"
+      CONFIG: sshd_config_oqs
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+    command: /openssh/sshd -D -o KexAlgorithms=mlkem1024-sha384
+    cap_add:
+      - NET_ADMIN
     restart: "unless-stopped"
     ports:
       - "2203:22"
-
-  authypass:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: authypass/Dockerfile
-    environment:
-      AUTHY_API_KEY: ${AUTHY_API_KEY}
-      ADMIN_LIST: ${ADMIN_LIST}
-      # template for it is "unixUserName:email:countrycode:phoneNumber unixUserName:email:countrycode:phoneNumber"
-    restart: "unless-stopped"
-    ports:
-      - "2204:22"
-
-  otp:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: otp/Dockerfile
-      args:
-        PAM_CONFIG: otp/otp.pam_sshd
-    environment:
-      ADMIN: sa
-    restart: "unless-stopped"
-    ports:
-      - "2205:22"
-
-  pass_otp:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: otp/Dockerfile
-      args:
-        PAM_CONFIG: otp/pass_otp.pam_sshd
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-    restart: "unless-stopped"
-    ports:
-      - "2258:22"
-
-  yubikey-pam:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: yubikey-pam/Dockerfile
-    environment:
-      ADMIN: sa
-    restart: "unless-stopped"
-    ports:
-      - "2221:22"
-
-  # Proxy:
-
-  http-proxy:
-    mem_limit: 512m
-    build: http-proxy
-    ports:
-      - "8888:3128"
-    restart: "unless-stopped"
-    links:
-      - pass
-      - key
-
-  socks5-proxy:
-    mem_limit: 512m
-    build: socks5
-    ports:
-      - "1080:1080"
-    restart: "unless-stopped"
-    links:
-      - pass
-      - key
-
-  http-proxy-authenticated:
-    mem_limit: 712m
-    build:
-      context: http-proxy
-      args:
-        SQUID_CONFIG: authenticated-squid.conf
-    ports:
-      - "8890:3128"
-    restart: "unless-stopped"
-    links:
-      - pass
-      - key
-
-  chain1:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: pass/Dockerfile
-    environment:
-      ADMIN: chain1
-      ADMIN_PASS: 1
-      PRIVATE_KEY_NAME: id_rsa
-    ports:
-      - "2217:22"
-    restart: "unless-stopped"
-    links:
-      - chain2
-      - http-proxy-chain2
-
-  chain2:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: chain2
-      CONFIG: sshd_config
-      PUB_KEY_NAME: id_rsa.pub
-      PRIVATE_KEY_NAME: id_rsa1
-    restart: "unless-stopped"
-    links:
-      - chain3
-      - http-proxy-chain3
-
-  chain3:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: chain3
-      CONFIG: sshd_config
-      PUB_KEY_NAME: id_rsa1.pub
-    restart: "unless-stopped"
-
-  http-proxy-chain1:
-    mem_limit: 256m
-    build: http-proxy
-    ports:
-      - "8889:3128"
-    restart: "unless-stopped"
-    links:
-      - chain1
-
-  http-proxy-chain2:
-    mem_limit: 256m
-    build: http-proxy
-    restart: "unless-stopped"
-    links:
-      - chain2
-
-  http-proxy-chain3:
-    mem_limit: 256m
-    build: http-proxy
-    restart: "unless-stopped"
-    links:
-      - chain3
-
-  # Special cases:
-
-  agent-forwarding-disabled:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: agent-forwarding-disabled/Dockerfile
-    environment:
-      ADMIN: sa
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2222:22"
-
-  sftp-disabled:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_no_sftp
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2227:22"
-
-  export-key:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: pass/Dockerfile
-    environment:
-      ADMIN: sa
-      ADMIN_PASS: pass
-      CONFIG: sshd_config_export_key
-      PRIVATE_KEY_NAME: id_rsa
-    restart: "unless-stopped"
-    ports:
-      - "2234:22"
-
-  channels-limit-1:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_key_limit_channels
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-      MAX_SESSIONS: 1
-    restart: "unless-stopped"
-    ports:
-      - "2244:22"
-
-  channels-limit-2:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_key_limit_channels
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-      MAX_SESSIONS: 2
-    restart: "unless-stopped"
-    ports:
-      - "2246:22"
-
-  anomaly-exec-openssh:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: anomaly-exec/Dockerfile
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_key
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-    restart: "unless-stopped"
-    ports:
-      - "2250:22"
-
-  anomaly-exec-custom:
-    mem_limit: 64m
-    build:
-      context: .
-      dockerfile: anomaly-exec/Dockerfile
-      args:
-        SSH_SERVER_NAME: Termius
-    environment:
-      ADMIN: sa
-      CONFIG: sshd_config_key
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
-    restart: "unless-stopped"
-    ports:
-      - "2251:22"
-
-  chacha-poly-with-hmac:
-    mem_limit: 64m
-    build: .
-    environment:
-      ADMIN: sa
-      CIPHER: chacha20-poly1305@openssh.com
-      MAC: hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
-      CONFIG: sshd_config_ciphers_macs
-      PUB_KEY_NAME: id_rsa.pub
-    restart: "unless-stopped"
-    ports:
-      - "2294:22"
+#  # Protocols:
+#
+#  telnet:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: telnet/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#    restart: "unless-stopped"
+#    ports:
+#      - "2216:23"
+#
+#  mosh-key:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: mosh/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2224:22"
+#      - "60001-60010:60001-60010/udp"
+#
+#  mosh-unstable:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: mosh/Dockerfile
+#    cap_add:
+#      - NET_ADMIN
+#    environment:
+#      UNSTABLE_NETWORK: "true"
+#      ADMIN: sa
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2232:22"
+#      - "60021-60030:60021-60030/udp"
+#
+#  mosh-pass:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: mosh/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#      CONFIG: sshd_config
+#    restart: "unless-stopped"
+#    ports:
+#      - "2233:22"
+#      - "60011-60020:60011-60020/udp"
+#
+#  # Port forwarding:
+#
+#  pf-disabled:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_no_pf
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2228:22"
+#
+#  pf-case-jump:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: qa
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: id_rsa.pub
+#    depends_on: [pf-case-keystorage, pf-case-target]
+#    ports:
+#      - "2230:22"
+#    restart: "unless-stopped"
+#    networks:
+#      - pf-case-keystorage
+#      - pf-case-target
+#
+#  pf-case-keystorage:
+#    mem_limit: 64m
+#    build: .
+#    command: bash -c 'cat /tmp/id_rsa1 > /home/$$ADMIN/id_rsa;/usr/sbin/sshd -D'
+#    environment:
+#      ADMIN: qa
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: id_ed25519.pub
+#    restart: "unless-stopped"
+#    networks:
+#      pf-case-keystorage:
+#        ipv4_address: 172.25.1.101
+#
+#  pf-case-target:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: qa
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: id_rsa1.pub
+#    restart: "unless-stopped"
+#    networks:
+#      pf-case-target:
+#        ipv4_address: 172.25.2.101
+#
+#  gateway-ports:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: gateway-ports/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2223:22"
+#
+#  # Authentication:
+#
+#  authykey:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: authykey/Dockerfile
+#    environment:
+#      AUTHY_API_KEY: ${AUTHY_API_KEY}
+#      ADMIN_LIST: ${ADMIN_LIST}
+#      # template for it is "unixUserName:email:countrycode:phoneNumber unixUserName:email:countrycode:phoneNumber"
+#    restart: "unless-stopped"
+#    ports:
+#      - "2203:22"
+#
+#  authypass:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: authypass/Dockerfile
+#    environment:
+#      AUTHY_API_KEY: ${AUTHY_API_KEY}
+#      ADMIN_LIST: ${ADMIN_LIST}
+#      # template for it is "unixUserName:email:countrycode:phoneNumber unixUserName:email:countrycode:phoneNumber"
+#    restart: "unless-stopped"
+#    ports:
+#      - "2204:22"
+#
+#  otp:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: otp/Dockerfile
+#      args:
+#        PAM_CONFIG: otp/otp.pam_sshd
+#    environment:
+#      ADMIN: sa
+#    restart: "unless-stopped"
+#    ports:
+#      - "2205:22"
+#
+#  pass_otp:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: otp/Dockerfile
+#      args:
+#        PAM_CONFIG: otp/pass_otp.pam_sshd
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#    restart: "unless-stopped"
+#    ports:
+#      - "2258:22"
+#
+#  yubikey-pam:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: yubikey-pam/Dockerfile
+#    environment:
+#      ADMIN: sa
+#    restart: "unless-stopped"
+#    ports:
+#      - "2221:22"
+#
+#  # Proxy:
+#
+#  http-proxy:
+#    mem_limit: 512m
+#    build: http-proxy
+#    ports:
+#      - "8888:3128"
+#    restart: "unless-stopped"
+#    links:
+#      - pass
+#      - key
+#
+#  socks5-proxy:
+#    mem_limit: 512m
+#    build: socks5
+#    ports:
+#      - "1080:1080"
+#    restart: "unless-stopped"
+#    links:
+#      - pass
+#      - key
+#
+#  http-proxy-authenticated:
+#    mem_limit: 712m
+#    build:
+#      context: http-proxy
+#      args:
+#        SQUID_CONFIG: authenticated-squid.conf
+#    ports:
+#      - "8890:3128"
+#    restart: "unless-stopped"
+#    links:
+#      - pass
+#      - key
+#
+#  chain1:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: pass/Dockerfile
+#    environment:
+#      ADMIN: chain1
+#      ADMIN_PASS: 1
+#      PRIVATE_KEY_NAME: id_rsa
+#    ports:
+#      - "2217:22"
+#    restart: "unless-stopped"
+#    links:
+#      - chain2
+#      - http-proxy-chain2
+#
+#  chain2:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: chain2
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: id_rsa.pub
+#      PRIVATE_KEY_NAME: id_rsa1
+#    restart: "unless-stopped"
+#    links:
+#      - chain3
+#      - http-proxy-chain3
+#
+#  chain3:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: chain3
+#      CONFIG: sshd_config
+#      PUB_KEY_NAME: id_rsa1.pub
+#    restart: "unless-stopped"
+#
+#  http-proxy-chain1:
+#    mem_limit: 256m
+#    build: http-proxy
+#    ports:
+#      - "8889:3128"
+#    restart: "unless-stopped"
+#    links:
+#      - chain1
+#
+#  http-proxy-chain2:
+#    mem_limit: 256m
+#    build: http-proxy
+#    restart: "unless-stopped"
+#    links:
+#      - chain2
+#
+#  http-proxy-chain3:
+#    mem_limit: 256m
+#    build: http-proxy
+#    restart: "unless-stopped"
+#    links:
+#      - chain3
+#
+#  # Special cases:
+#
+#  agent-forwarding-disabled:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: agent-forwarding-disabled/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2222:22"
+#
+#  sftp-disabled:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_no_sftp
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2227:22"
+#
+#  export-key:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: pass/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      ADMIN_PASS: pass
+#      CONFIG: sshd_config_export_key
+#      PRIVATE_KEY_NAME: id_rsa
+#    restart: "unless-stopped"
+#    ports:
+#      - "2234:22"
+#
+#  channels-limit-1:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_key_limit_channels
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#      MAX_SESSIONS: 1
+#    restart: "unless-stopped"
+#    ports:
+#      - "2244:22"
+#
+#  channels-limit-2:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_key_limit_channels
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#      MAX_SESSIONS: 2
+#    restart: "unless-stopped"
+#    ports:
+#      - "2246:22"
+#
+#  anomaly-exec-openssh:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: anomaly-exec/Dockerfile
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_key
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2250:22"
+#
+#  anomaly-exec-custom:
+#    mem_limit: 64m
+#    build:
+#      context: .
+#      dockerfile: anomaly-exec/Dockerfile
+#      args:
+#        SSH_SERVER_NAME: Termius
+#    environment:
+#      ADMIN: sa
+#      CONFIG: sshd_config_key
+#      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2251:22"
+#
+#  chacha-poly-with-hmac:
+#    mem_limit: 64m
+#    build: .
+#    environment:
+#      ADMIN: sa
+#      CIPHER: chacha20-poly1305@openssh.com
+#      MAC: hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+#      CONFIG: sshd_config_ciphers_macs
+#      PUB_KEY_NAME: id_rsa.pub
+#    restart: "unless-stopped"
+#    ports:
+#      - "2294:22"
 
 networks:
   pf-case-keystorage:

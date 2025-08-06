@@ -28,4 +28,4 @@ RUN chmod +x /usr/bin/sanitize-auth-log.sh
 ADD zshrc /tmp/
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
-CMD /openssh/sshd -D
+

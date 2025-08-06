@@ -44,6 +44,17 @@ chmod 666 /var/log/auth.log
 /usr/sbin/syslog-ng -F &
 /bin/sanitize-auth-log.sh &
 
+# Add network delay if DELAY_MS is set
+if [ ! -z "$DELAY_MS" ]; then
+    echo "Adding ${DELAY_MS}ms network delay..."
+    # Install traffic control tools if not available
+    if ! command -v tc &> /dev/null; then
+        apt-get update && apt-get install -y iproute2
+    fi
+    # Add delay to all network traffic on eth0
+    tc qdisc add dev eth0 root netem delay ${DELAY_MS}ms 2>/dev/null || echo "Warning: Could not add network delay (may already exist or require NET_ADMIN capability)"
+fi
+
 rm /etc/ssh/ssh_host_*_key
 ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key
 
