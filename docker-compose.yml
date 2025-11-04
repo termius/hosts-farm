@@ -1332,6 +1332,20 @@ networks:
       config:
         - subnet: 172.25.2.0/24
 
+# alma-linux:
+
+  alma-linux:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: alma-linux/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+    restart: "unless-stopped"
+    ports:
+      - "22031:22"
+
 # rocky-linux:
 
   rocky-linux:
