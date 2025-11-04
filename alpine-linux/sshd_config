@@ -1,0 +1,8 @@
+Port 22
+Protocol 2
+PasswordAuthentication yes
+UsePAM no
+PermitRootLogin no
+PubkeyAuthentication yes
+LogLevel INFO
+Subsystem sftp internal-sftp

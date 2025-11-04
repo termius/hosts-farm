@@ -1363,6 +1363,20 @@ services:
     ports:
       - "22033:22"
 
+  # alpine-linux
+
+  alpine-linux:
+    mem_limit: 128m
+    build:
+      context: .
+      dockerfile: alpine-linux/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+    restart: unless-stopped
+    ports:
+      - "22034:22"
+
 networks:
   pf-case-keystorage:
     ipam:
