@@ -1321,17 +1321,6 @@ services:
     ports:
       - "2294:22"
 
-networks:
-  pf-case-keystorage:
-    ipam:
-      config:
-        - subnet: 172.25.1.0/24
-  pf-case-target:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.25.2.0/24
-
 # alma-linux:
 
   alma-linux:
@@ -1359,3 +1348,28 @@ networks:
     restart: "unless-stopped"
     ports:
       - "22032:22"
+
+  # amazon-linux:
+
+  amazon-linux:
+    mem_limit: 128m
+    build:
+      context: .
+      dockerfile: amazon-linux/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+    restart: unless-stopped
+    ports:
+      - "22033:22"
+
+networks:
+  pf-case-keystorage:
+    ipam:
+      config:
+        - subnet: 172.25.1.0/24
+  pf-case-target:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.2.0/24
