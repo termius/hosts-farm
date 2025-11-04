@@ -1331,3 +1331,17 @@ networks:
     ipam:
       config:
         - subnet: 172.25.2.0/24
+
+# rocky-linux:
+
+  rocky-linux:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: rocky-linux/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+    restart: "unless-stopped"
+    ports:
+      - "22032:22"
