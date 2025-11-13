@@ -11,10 +11,11 @@ RUN apt-get update -y && apt-get upgrade -y && \
     bb cmatrix libaa-bin \
     zsh git build-essential autoconf automake cmake zlib1g-dev libssl-dev ninja-build
 
-RUN git clone https://github.com/open-quantum-safe/openssh.git --depth 1 --branch OQS-v9
-RUN cd openssh && ./oqs-scripts/clone_liboqs.sh
-RUN cd openssh && ./oqs-scripts/build_liboqs.sh
-RUN cd openssh && ./oqs-scripts/build_openssh.sh
+RUN git clone https://github.com/open-quantum-safe/openssh.git --depth 1 --branch OQS-v10 \
+    && cd openssh  \
+    && ./oqs-scripts/clone_liboqs.sh \
+    && ./oqs-scripts/build_liboqs.sh \
+    && ./oqs-scripts/build_openssh.sh
 
 ADD sshd_configs_raw /tmp/
 ADD keys /tmp/
@@ -28,4 +29,4 @@ RUN chmod +x /usr/bin/sanitize-auth-log.sh
 ADD zshrc /tmp/
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
-CMD /openssh/sshd -D
+CMD /openssh/sshd -f /etc/ssh/sshd_config -D
