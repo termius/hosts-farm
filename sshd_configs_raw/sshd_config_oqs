@@ -6,4 +6,5 @@ AuthorizedKeysFile .ssh/authorized_keys
 LogLevel DEBUG3
 SyslogFacility AUTHPRIV
 PrintLastLog no
+HostKeyAlgorithms +ssh-mldsa-44,ssh-mldsa-65,ssh-mldsa-87
 PubkeyAcceptedAlgorithms +ssh-mldsa-44,ssh-mldsa-65,ssh-mldsa-87
