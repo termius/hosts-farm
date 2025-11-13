@@ -925,7 +925,7 @@ services:
     environment:
       ADMIN: sa
       CONFIG: sshd_config_oqs
-      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub id_mldsa44.pub id_mldsa65.pub id_mldsa87.pub
     restart: "unless-stopped"
     ports:
       - "22100:22"
