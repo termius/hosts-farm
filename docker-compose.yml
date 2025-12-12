@@ -930,6 +930,21 @@ services:
     ports:
       - "22100:22"
 
+  key-mldsa:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: oqs/Dockerfile
+      args:
+        UBUNTU_VERSION: "22.04"
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_mldsa
+      PUB_KEY_NAME: id_mldsa44.pub id_mldsa65.pub id_mldsa87.pub id_mldsa44_aes128-ctr.pub id_mldsa65_aes128-ctr.pub id_mldsa87_aes128-ctr.pub
+    restart: "unless-stopped"
+    ports:
+      - "22101:22"
+
   # Protocols:
 
   telnet:
