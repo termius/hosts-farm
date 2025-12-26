@@ -36,6 +36,8 @@ add_pass() {
     fi
 }
 
+envsubst < /tmp/$CONFIG > "/etc/ssh/sshd_config"
+
 mkdir /var/run/sshd
 
 create_user $ADMIN
