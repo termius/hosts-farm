@@ -959,6 +959,18 @@ services:
     ports:
       - "2216:23"
 
+  telnet-echo-issue:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: telnet-echo-issue/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+    restart: "unless-stopped"
+    ports:
+      - "22103:23"
+
   mosh-key:
     mem_limit: 64m
     build:
