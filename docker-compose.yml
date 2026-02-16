@@ -945,6 +945,38 @@ services:
     ports:
       - "22101:22"
 
+  ssh-dev-1:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: openssh-dev/Dockerfile
+      args:
+        UBUNTU_VERSION: "24.04"
+    environment:
+      ADMIN: sa
+      KEX: mlkem768x25519-sha256
+      CONFIG: sshd_config_kex
+      PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
+    ports:
+      - "22105:22"
+
+  ssh-dev-2:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: openssh-dev/Dockerfile
+      args:
+        UBUNTU_VERSION: "24.04"
+    environment:
+      ADMIN: sa
+      KEX: mlkem768x25519-sha256
+      CONFIG: sshd_config_kex
+      PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
+    ports:
+      - "22106:22"
+
   # Protocols:
 
   telnet:
