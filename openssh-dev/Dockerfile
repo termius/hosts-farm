@@ -1,5 +1,6 @@
 ARG UBUNTU_VERSION=24.04
 FROM ubuntu:${UBUNTU_VERSION}
+ARG OPENSSH_REF=5f98660
 
 RUN apt-get update -y && apt-get install -y locales && \
   locale-gen en_US.UTF-8 && update-locale LC_ALL="en_US.UTF-8"
@@ -11,8 +12,9 @@ RUN apt-get update -y && apt-get upgrade -y && \
     bb cmatrix libaa-bin \
     zsh git build-essential autoconf zlib1g-dev libssl-dev
 
-RUN git clone https://github.com/openssh/openssh-portable.git --depth 1 --branch master \
+RUN git clone https://github.com/openssh/openssh-portable.git \
     && cd openssh-portable \
+    && git checkout ${OPENSSH_REF} \
     && autoreconf \
     && ./configure --prefix=/usr --sysconfdir=/etc/ssh --with-privsep-path=/var/lib/sshd
 

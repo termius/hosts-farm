@@ -952,6 +952,7 @@ services:
       dockerfile: openssh-dev/Dockerfile
       args:
         UBUNTU_VERSION: "24.04"
+        OPENSSH_REF: "5f98660"
     environment:
       ADMIN: sa
       KEX: mlkem768x25519-sha256
@@ -968,6 +969,7 @@ services:
       dockerfile: openssh-dev/Dockerfile
       args:
         UBUNTU_VERSION: "24.04"
+        OPENSSH_REF: "5f98660"
     environment:
       ADMIN: sa
       KEX: mlkem768x25519-sha256
