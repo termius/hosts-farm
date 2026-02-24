@@ -11,9 +11,15 @@ RUN apt-get update -y && apt-get upgrade -y && \
     bb cmatrix libaa-bin \
     zsh git build-essential autoconf automake cmake zlib1g-dev libssl-dev ninja-build
 
-RUN git clone https://github.com/open-quantum-safe/openssh.git --depth 1 --branch OQS-v10 \
+RUN git clone https://github.com/open-quantum-safe/openssh.git --branch OQS-v10 \
     && cd openssh  \
-    && ./oqs-scripts/clone_liboqs.sh \
+    && git checkout 3eca538 \
+    && ./oqs-scripts/clone_liboqs.sh
+
+RUN cd openssh/oqs-scripts/tmp/liboqs \
+    && git checkout 0.14.0
+
+RUN cd openssh \
     && ./oqs-scripts/build_liboqs.sh \
     && ./oqs-scripts/build_openssh.sh
 
