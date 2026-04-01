@@ -22,5 +22,10 @@ RUN chmod +x /usr/bin/sanitize-auth-log.sh
 
 ADD zshrc /tmp/
 
+RUN cat > /etc/ssh/ssh_banner <<'EOF'
+Banner test.
+Visit https://google.com to proceed.
+EOF
+
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD /usr/sbin/sshd -D

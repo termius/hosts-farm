@@ -1,0 +1,13 @@
+PubkeyAuthentication yes
+ChallengeResponseAuthentication no
+HostbasedAuthentication no
+PasswordAuthentication no
+AllowGroups remote
+AuthorizedKeysFile .ssh/authorized_keys
+LogLevel DEBUG3
+SyslogFacility AUTHPRIV
+Subsystem sftp /usr/lib/openssh/sftp-server -l DEBUG3
+PrintLastLog no
+Banner /etc/ssh/ssh_banner
+AcceptEnv LANG LC_*
+${MAX_AUTH_TRIES}
