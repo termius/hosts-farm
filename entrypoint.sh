@@ -44,7 +44,7 @@ chmod 666 /var/log/auth.log
 /bin/sanitize-auth-log.sh &
 
 rm /etc/ssh/ssh_host_*_key
-ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key
+ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ""
 
 echo 'Start daemon'
 echo "$@"

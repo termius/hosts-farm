@@ -1382,6 +1382,17 @@ services:
     ports:
       - "2294:22"
 
+  banner:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_banner
+      PUB_KEY_NAME: id_rsa.pub id_rsa_encrypted.pub
+    restart: "unless-stopped"
+    ports:
+      - "22107:22"
+
 networks:
   pf-case-keystorage:
     ipam:
