@@ -22,7 +22,7 @@ Make sure you can connect to service you want:
 
 Push to your fork and [submit a pull request][pr].
 
-[pr]: https://github.com/Crystalnix/hosts-farm/compare/
+[pr]: https://github.com/termius/hosts-farm/compare/
 
 At this point you're waiting on us. We like to at least comment on pull requests
 within three business days (and, typically, one business day). We may suggest
