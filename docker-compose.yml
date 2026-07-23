@@ -1303,7 +1303,7 @@ services:
     ports:
       - "2227:22"
 
-  sftp-no-subsystem:
+  no-sftp-subsystem:
     mem_limit: 64m
     build: .
     environment:
