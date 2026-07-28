@@ -1303,6 +1303,17 @@ services:
     ports:
       - "2227:22"
 
+  no-sftp-subsystem:
+    mem_limit: 64m
+    build: .
+    environment:
+      ADMIN: sa
+      CONFIG: sshd_config_no_sftp_subsystem
+      PUB_KEY_NAME: id_rsa.pub
+    restart: "unless-stopped"
+    ports:
+      - "22270:22"
+
   export-key:
     mem_limit: 64m
     build:
