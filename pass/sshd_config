@@ -6,3 +6,5 @@ LogLevel DEBUG3
 PrintLastLog no
 Subsystem       sftp    /usr/lib/openssh/sftp-server
 AcceptEnv LANG LC_*
+ClientAliveInterval 300
+ClientAliveCountMax 12

@@ -6,3 +6,4 @@ AuthorizedKeysFile .ssh/authorized_keys
 LogLevel DEBUG3
 SyslogFacility AUTH
 PrintLastLog no
+SetEnv MOSH_SERVER_NETWORK_TMOUT=3600
