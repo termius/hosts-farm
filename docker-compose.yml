@@ -17,6 +17,19 @@ services:
     ports:
       - "2201:22"
 
+  shell-integration:
+    mem_limit: 64m
+    build:
+      context: .
+      dockerfile: shell-integration/Dockerfile
+    environment:
+      ADMIN: sa
+      ADMIN_PASS: pass
+      CONFIG: sshd_config
+    restart: "unless-stopped"
+    ports:
+      - "2245:22"
+
   # Key types:
 
   key:
