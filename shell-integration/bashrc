@@ -1,0 +1,6 @@
+
+# Ghostty shell integration (OSC 133 prompt marks, cursor and title reporting).
+export GHOSTTY_SHELL_FEATURES=cursor,title
+if [ -r /etc/ghostty-shell-integration/bash/ghostty.bash ]; then
+  builtin source /etc/ghostty-shell-integration/bash/ghostty.bash
+fi
